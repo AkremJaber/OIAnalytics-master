@@ -1,0 +1,25 @@
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center"> Persons Has Tenants</h1>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+            <thead class="head-light">
+                <tr>
+                    <th>Person</th>
+                    <th>Tenant</th>
+                    <th>Delete</th>
+                    
+                </tr>
+            </thead>
+            <tbody >
+                 <tr *ngFor="let x of service.TenantHasPersonDtoList">
+                    <td>{{x.PersonCentralAcc}}</td>
+                    <td>{{x.Tenant_ccC_Name}}</td>
+                    <!-- <td>{{x.uiD_CCCTenantsHasPersons}}</td> -->
+                    <td> <button class="btn-delete" (click)="deleteTHP(x.uiD_CCCTenantsHasPersons)" > Delete </button> </td>
+                </tr> 
+            </tbody>
+        </table>
+    </div>
+</div> 

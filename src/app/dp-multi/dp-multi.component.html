@@ -1,0 +1,51 @@
+<form #thpForm="ngForm" (ngSubmit)="getThpForm(thpForm.value.SelVal,thpForm.value.SelValT)">
+<h2>Persons</h2>
+<select name="my-select" [(ngModel)]="mySelect" (change)="selectChange()" multiple="multiple">
+  <option [value]="item.uiD_Person" *ngFor="let item of thp">
+      {{item.centralAccount}}
+  </option>
+</select>
+
+<h4>Selected Persons:</h4>
+
+<ng-container>
+  <div>
+      Selected:
+      <ul>
+          <li *ngFor="let SelVal of selectedValue">{{SelVal.centralAccount}}</li>
+      </ul>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  <div>
+      Selected: {{selectedValue}}
+  </div>
+</ng-template>
+
+<h2>Tenants</h2>
+<select name="my-selectt" [(ngModel)]="mySelectTenant" (change)="selectChangeTenant()" multiple="multiple">
+  <option [value]="itemt.uiD_CCCTenants" *ngFor="let itemt of t">
+      {{itemt.ccC_Name}}
+  </option>
+</select>
+<h4>Selected Tenants:</h4>    
+<ng-container >
+  <div>
+      Selected:
+      <ul>
+          <li *ngFor="let SelValT of selectedValueTenant">{{SelValT.ccC_Name}}</li>
+      </ul>
+  </div>
+</ng-container>
+<ng-template #elseTemplateT>
+  <div>
+      Selected: {{selectedValueTenant}} 
+  </div>
+</ng-template>
+<button>
+  Assign
+</button>
+</form>
+
+
+

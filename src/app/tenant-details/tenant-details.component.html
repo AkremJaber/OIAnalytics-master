@@ -1,0 +1,38 @@
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">Tenants</h1>
+</div>
+<div class="col-md-6">
+    <table class="table">
+        <thead class="head-light">
+            <tr>
+                <th>Tenant Name</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pd of t">
+                <td>{{pd.ccC_Name}}</td>
+                <td> <button class="btn-detail" (click)="tenantDetails(pd.ccC_WorkspaceId)"> Details </button> </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table">
+        <thead class="head-light">
+            <tr>
+                <th>Dashboards</th>
+                <th>Reports</th>
+                <th>DataSets</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pd of TD">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
