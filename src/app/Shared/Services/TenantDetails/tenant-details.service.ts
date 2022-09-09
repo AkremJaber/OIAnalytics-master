@@ -22,8 +22,8 @@ export class TenantDetailsService {
   dataset:DataSet
   
 
-  getTenantDetail(id:string):Observable<TenantDetails[]>{
-    return this.http.get<TenantDetails[]>(this.getTenant+'/'+id)
+  getTenantDetail(id:string){
+    return this.http.get(this.getTenant+'/'+id)
   }
 
   // getDashRepDs(id:string){

@@ -1,4 +1,41 @@
-<div class="jumbotron py-3">
+
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle (click)="tenantDetails(pd.ccC_WorkspaceId)" *ngFor="let pd of t">
+      <mat-expansion-panel-header class="panel-header">
+        <mat-panel-title>
+           <h5> {{pd.ccC_Name}}</h5>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="rep-class">
+        <h6>Reports:</h6>
+        <div *ngFor="let r of reports">
+        <label>{{r.name}}</label>
+        </div>
+      </div>
+      <div class="dash-class">
+      <h6>Dashboards:</h6>
+      <div *ngFor="let d of dashboards">
+        <label>{{d.displayName}}</label>
+      </div>
+      </div>
+      <div class="ds-class">
+      <h6>DataSets:</h6>
+      <div *ngFor="let ds of datasets">
+        <label>{{ds.name}}</label>
+      </div>
+      </div>
+      
+      <mat-action-row>
+        <button mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+
+
+
+<!-- <div class="jumbotron py-3">
     <h1 class="display-4 text-center">Tenants</h1>
 </div>
 <div class="col-md-6">
@@ -20,19 +57,28 @@
     <table class="table">
         <thead class="head-light">
             <tr>
-                <th>Dashboards</th>
                 <th>Reports</th>
-                <th>DataSets</th>
+                
+        </thead>
+        <tbody>
+            <tr *ngFor="let r of reports">
+                <td>{{r.name}}</td>  
+            </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead class="head-light">
+            <tr>
+                <th>Dashboards</th>
+                
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let pd of TD">
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr *ngFor="let d of dashboards">
+                <td>{{d.displayName}}</td>  
             </tr>
         </tbody>
     </table>
 
 
-</div>
+</div> -->

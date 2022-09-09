@@ -18,9 +18,38 @@
     <div class="u-tab-content">
       <div class="u-align-left u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
         <div class="u-container-layout u-container-layout-8">
-
             <div class="col-md-6">
-                <table class="table">
+              <app-tenant-details></app-tenant-details>
+              <!-- <table class="table table-condensed" style="border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Workspace Name</th>
+                        <th>Delete</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle" *ngFor="let pd of t">
+                      
+                        <td>1</td>
+                        <td>{{pd.ccC_Name}}</td>
+                        <td><i class="material-icons" (click)="deleteTenant(pd.ccC_WorkspaceId)">delete</i></td>
+                        </tbody>
+                        <tr>
+                          <td colspan="2" class="hiddenRow">
+                            <div class="accordian-body collapse" id="demo1"> Demo1 
+                            </div> 
+                          </td>
+                      </tr>
+                    
+                     
+                    
+
+                
+            </table> -->
+              
+                <!-- <table class="table">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
@@ -34,14 +63,14 @@
                         <td scope="row">1</td>
                         <td>{{pd.ccC_Name}}</td>
                         <td> <i class="material-icons" >edit</i> </td>
-                        <td> <i class="material-icons" (click)="deleteTenant(pd.ccC_WorkspaceId)" >delete</i> </td>
-                        <!-- <td> <button class="btn-delete" (click)="deleteTenant(pd.ccC_WorkspaceId)"> Delete </button> </td> -->
+                        <td> <i class="material-icons" (click)="deleteTenant(pd.ccC_WorkspaceId)">delete</i> </td>
+                        
                       </tr>
                   
                     </tbody>
-                  </table>
-            </div>
+                  </table> -->
 
+            </div>
         </div>
         <!-- <app-tenants-has-persons></app-tenants-has-persons> -->
       </div>
@@ -55,21 +84,21 @@
                     <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Tenant 01" value="">
                   </mat-form-field>
                 <br>
-                <button type="button" class="btn btn-primary">Create</button>            
+                <button type="submit" class="btn btn-primary">Create</button>            
             </form>
-        </div>
-    
+          </div>
         </div>
       </div>
       
       <div class="u-container-style u-tab-pane u-white u-tab-pane-3" id="tab-2917" role="tabpanel" aria-labelledby="link-tab-2917">
         <div class="u-container-layout u-container-layout-10">
+          <div class="form-area">
 
-            <h2>Selected Tenants:</h2>
+            <h2>Assign workspace to users:</h2>
             <form #thpForm="ngForm" (ngSubmit)="AddAdmin(thpForm.value.SelValT,thpForm.value.SelValUser)">
                 <mat-form-field appearance="fill">
                 <mat-label>Select an option</mat-label>
-                <mat-select name="my-selectt" [(ngModel)]="mySelectTenant" (change)="selectChangeTenant()" multiple="multiple" >
+                <mat-select name="my-selectt" [(ngModel)]="mySelectTenant" (selectionChange)="selectChangeTenant()" >
                 <!-- <select name="my-selectt" [(ngModel)]="mySelectTenant" (change)="selectChangeTenant()" multiple="multiple"> -->
                     <mat-option [value]="itemt.ccC_WorkspaceId" *ngFor="let itemt of t">
                         {{itemt.ccC_Name}}
@@ -79,37 +108,37 @@
                   <!-- <h4>Selected Tenants:</h4>     -->
                   <ng-container >
                     <div>
-                        Selected:
-                        test
+                        Selected :
                         <ul>
                             <li *ngFor="let SelValT of selectedValueTenant">{{SelValT.ccC_Name}}</li>
                         </ul>
                     </div>
                   </ng-container>
-                  <!-- <ng-template #elseTemplateT>
+                  <ng-template #elseTemplateT>
                     <div>
                         Selected:{{selectedValueTenant}} 
                     </div>
-                  </ng-template> -->
+                  </ng-template>
                   
                   <mat-form-field appearance="fill">
                     <mat-label>Select an option</mat-label>  
-                      <mat-select name="users" [(ngModel)]="userSelect" (change)="selectChangeUser()" > 
+                      <mat-select name="users" [(ngModel)]="userSelect" (selectionChange)="selectChangeUser()" multiple="multiple" > 
                         <mat-option [value]="varTest1.name" *ngFor="let varTest1 of emails">{{varTest1.name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                       <ng-container >
                         <div>
-                            Selected:
+                            Selected :
                             <ul>
                                 <li *ngFor="let SelValUser of selectedValueUser">{{SelValUser.name}}</li>
                             </ul>
                         </div>
                       </ng-container>
-                      <button type="button" class="btn btn-primary">Submit</button>
-                    
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                  
                     </form>
           <!-- <app-dp-multi></app-dp-multi> -->
         </div>
+      </div>
       </div>
     </div>

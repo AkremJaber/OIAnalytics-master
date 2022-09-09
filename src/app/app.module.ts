@@ -22,10 +22,8 @@ import { TestComponent } from './test/test.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-
-
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -53,7 +51,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatButtonModule,
     PowerBIEmbedModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent],

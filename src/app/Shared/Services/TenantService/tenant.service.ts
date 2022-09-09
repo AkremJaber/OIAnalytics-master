@@ -9,9 +9,12 @@ import { Tenant } from '../../Models/Tenant/tenant.model';
 export class TenantService {
 
   constructor(private http: HttpClient) { }
-
+  
+  
   readonly getTenant= 'https://localhost:44361/api/Tenants';
   readonly group="https://localhost:44361/api/Tenants/Admin";
+  readonly updateGroup="https://localhost:44361/api/Tenants/UpdateTenantUserGroup";
+
 
   formData:Tenant = new Tenant();
   t: Tenant;
@@ -42,7 +45,9 @@ export class TenantService {
         return ( _.includes(ccC_WorkspaceId,o.ccC_WorkspaceId));
         
     });
+    
     return selObjT; 
+
   }
   getDropDownTextTUser(name:any, object:any):any{
     const selObjU = _.filter(object, function (o) {
@@ -51,12 +56,14 @@ export class TenantService {
     });
     return selObjU;
   }
+  
   saveAdmin(WorkspaceId:any,email:any){
     const postAdmin = {
-      CCC_WorkspaceId :WorkspaceId,
-      Email: email
+            email: email,
+            ccC_WorkspaceId: WorkspaceId
     }
-    return this.http.post(this.group,postAdmin)
+  
+    return this.http.put(this.updateGroup,postAdmin)
 
 
   }
