@@ -1,0 +1,11 @@
+
+<h2> Clone Report</h2>
+            <form class="example-form" #tenantForm="ngForm" (ngSubmit)="CloneReport()" >
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Report Name</mat-label>
+                    <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Report 01" value="">
+                  </mat-form-field>
+                <br>
+                <button type="submit" class="btn btn-primary">Clone</button>            
+            </form>
+          

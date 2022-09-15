@@ -47,6 +47,7 @@ export class TenantService {
     });
     
     return selObjT; 
+  
 
   }
   getDropDownTextTUser(name:any, object:any):any{

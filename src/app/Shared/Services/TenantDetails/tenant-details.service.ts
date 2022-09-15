@@ -15,6 +15,10 @@ export class TenantDetailsService {
   constructor(private http: HttpClient) { }
   list: TenantDetails[];
   readonly getTenant= 'https://localhost:44361/api/TenantDetails';
+  readonly delReport= 'https://localhost:44361/api/EmbeddedReport';
+  readonly clone= 'https://localhost:44361/api/EmbeddedReport';
+
+
   
   formData:TenantDetails = new TenantDetails();
   dashboard:Dashboard
@@ -25,6 +29,25 @@ export class TenantDetailsService {
   getTenantDetail(id:string){
     return this.http.get(this.getTenant+'/'+id)
   }
+
+  deleteReport(workspaceId:any, reportID:any):any{
+    // const postData = {
+    //   ccC_WorkspaceId :workspaceId,
+    //   reportId:reportID
+    // }
+    return this.http.delete(this.delReport+'/'+workspaceId+'/'+reportID)
+  }
+
+  cloneReport(namee:any,workspaceId:any, reportID:any){
+    const postData= {
+      name:namee,
+      ccC_WorkspaceId:workspaceId,
+      reportId:reportID
+    }
+
+    return this.http.post(this.clone,postData)
+  }
+
 
   // getDashRepDs(id:string){
   //   this.list =  lastValueFrom(this.getTenantDetail(id))

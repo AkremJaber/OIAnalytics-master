@@ -24,7 +24,23 @@ import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatFormFieldModule} from '@angular/material/form-field';
+import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
+import { 
+	IgxDropDownModule,
+	IgxIconModule,
+	IgxNavbarModule,
+	IgxButtonModule,
+	IgxToggleModule
+ } from "igniteui-angular";
+ import { enableRipple } from '@syncfusion/ej2-base';
+ import {MatDialogModule} from '@angular/material/dialog';
+ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PopupComponent } from './popup/popup.component';
+import { DatePipe } from '@angular/common';
+import { CreatePopupComponent } from './create-popup/create-popup.component';
+import { ReportEmbedComponent } from './report-embed/report-embed.component';
 
+ enableRipple(true);
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +52,10 @@ import { MatFormFieldModule} from '@angular/material/form-field';
     HeaderComponent,
     FooterComponent,
     SidenavbarComponent,
-    TestComponent
+    TestComponent,
+    PopupComponent,
+    CreatePopupComponent,
+    ReportEmbedComponent
 
      
   ],
@@ -53,9 +72,20 @@ import { MatFormFieldModule} from '@angular/material/form-field';
     MatSelectModule,
     BrowserAnimationsModule,
     MatExpansionModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    DropDownButtonModule,
+    IgxDropDownModule,
+	  IgxIconModule,
+	  IgxNavbarModule,
+	  IgxButtonModule,
+	  IgxToggleModule,
+    MatDialogModule,
+    NgbModule,
+    
+    
+
   ],
-  providers: [],
+  providers: [DatePipe, TenantDetailsComponent],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

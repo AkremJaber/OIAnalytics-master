@@ -35,7 +35,6 @@ export class TenantsComponent implements OnInit {
   constructor(public service:TenantService,public detailService:TenantDetailsService) { }
   public t:any;
   public postTenant:any
-  e:string
   public TD:any
   public reports:any
   public dashboards:any
@@ -79,10 +78,6 @@ export class TenantsComponent implements OnInit {
     }
   }
 
-  onTenantCreate(){
-    this.service.createTenant(this.e).subscribe()
-    window.location.reload();
-  }
 
   mySelectTenant = [];
    selectedValueTenant:any;

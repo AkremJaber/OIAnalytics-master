@@ -5,11 +5,131 @@
     
   }
   
+  
   .example-headers-align .mat-form-field + .mat-form-field {
     margin-left: 8px;
     
+   
   }
   .panel-header{
     background-color: rgb(221, 221, 221);
+  }
+  .tenant-name{
+    margin-left: 10px;
+  }
+  .mat-body{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  .icon{
+    font-size: 2rem;
+    min-width: 3.7rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin-left: 20px;
+  }
+  .ic-rep{
+  display: inline-flex;
+  
+  }
+  .fa-chart-area{
+    font-size: 1rem;
+  }
+  .img{
+    width: 20px !important;
+    height: 20px !important;
+  }
+  h6{
+    margin-left: 10px;
+  }
+  label{
+    margin-left: 30px;
+  }
+  
+  #workspace{
+    width: 25px !important;
+    height: 25px !important;
     
   }
+
+
+
+  .btn {
+    background-color: #868686;
+    color: white;
+    padding: 16px;
+    font-size: 2px;
+    border: none;
+    outline: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  
+  .fa-caret-down{
+    font-size: 2px;
+
+  }
+
+  i{
+    margin-left: 10px;
+  }
+ 
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 1px;
+    font-size: 16px;
+    border: none;
+    
+    
+  }
+  
+ 
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 16px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #ffffff;}
+
+  .create{
+    margin-left: 550px;
+    
+  }
+
+.del-icon{
+  margin-left: auto;
+  font-size: x-large;
+}
+
+.overflow-init {
+  overflow: initial;
+}

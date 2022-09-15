@@ -2,93 +2,33 @@
     <h1 class="display-4 text-center">Workspaces</h1>
 </div>
 <br>
+
 <div class="u-tabs u-tabs-1">
-    <ul class="u-tab-list u-unstyled" role="tablist">
+   
+  <ul class="u-tab-list u-unstyled" role="tablist">
+    
       <li class="u-tab-item" role="presentation">
         <a class="active u-active-white u-button-style u-tab-link u-tab-link-1" id="link-tab-0da5" href="#tab-0da5" role="tab" aria-controls="tab-0da5" aria-selected="true">Workspaces</a>
       </li>
-      <li class="u-tab-item" role="presentation">
-        <a class="u-active-white u-button-style u-tab-link u-tab-link-2" id="link-tab-14b7" href="#tab-14b7" role="tab" aria-controls="tab-14b7" aria-selected="false">Create Workspace</a>
-      </li>
+      
       <li class="u-tab-item" role="presentation">
         <a class="u-active-white u-button-style u-tab-link u-tab-link-3" id="link-tab-2917" href="#tab-2917" role="tab" aria-controls="tab-2917" aria-selected="false">Assign</a>
       </li>
+     
     </ul>
 
     <div class="u-tab-content">
       <div class="u-align-left u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
         <div class="u-container-layout u-container-layout-8">
             <div class="col-md-6">
-              <app-tenant-details></app-tenant-details>
-              <!-- <table class="table table-condensed" style="border-collapse:collapse;">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Workspace Name</th>
-                        <th>Delete</th>
-                       
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle" *ngFor="let pd of t">
-                      
-                        <td>1</td>
-                        <td>{{pd.ccC_Name}}</td>
-                        <td><i class="material-icons" (click)="deleteTenant(pd.ccC_WorkspaceId)">delete</i></td>
-                        </tbody>
-                        <tr>
-                          <td colspan="2" class="hiddenRow">
-                            <div class="accordian-body collapse" id="demo1"> Demo1 
-                            </div> 
-                          </td>
-                      </tr>
-                    
-                     
-                    
-
-                
-            </table> -->
               
-                <!-- <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Workspaces</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                  <tr class="table-active" *ngFor="let pd of t">
-                        <td scope="row">1</td>
-                        <td>{{pd.ccC_Name}}</td>
-                        <td> <i class="material-icons" >edit</i> </td>
-                        <td> <i class="material-icons" (click)="deleteTenant(pd.ccC_WorkspaceId)">delete</i> </td>
-                        
-                      </tr>
-                  
-                    </tbody>
-                  </table> -->
+              <app-tenant-details></app-tenant-details>
 
             </div>
         </div>
         <!-- <app-tenants-has-persons></app-tenants-has-persons> -->
       </div>
-      <div class="u-align-left u-container-style u-tab-pane u-white u-tab-pane-2" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
-        <div class="u-container-layout u-container-layout-10">
-        <div class="form-area">
-            <h2> Create Workspace</h2>
-            <form class="example-form" #tenantForm="ngForm" (ngSubmit)="onTenantCreate()">
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Workspace Name</mat-label>
-                    <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Tenant 01" value="">
-                  </mat-form-field>
-                <br>
-                <button type="submit" class="btn btn-primary">Create</button>            
-            </form>
-          </div>
-        </div>
-      </div>
+      
       
       <div class="u-container-style u-tab-pane u-white u-tab-pane-3" id="tab-2917" role="tabpanel" aria-labelledby="link-tab-2917">
         <div class="u-container-layout u-container-layout-10">

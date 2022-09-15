@@ -1,86 +1,79 @@
 
+ 
 <mat-accordion class="example-headers-align">
-    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle (click)="tenantDetails(pd.ccC_WorkspaceId)" *ngFor="let pd of t">
+    <mat-expansion-panel class="overflow-init" hideToggle (click)="tenantDetails(pd.ccC_WorkspaceId)" *ngFor="let pd of t">
       <mat-expansion-panel-header class="panel-header">
-        <mat-panel-title>
-           <h5> {{pd.ccC_Name}}</h5>
+        <mat-panel-title class="icon">
+            <img class="img" id="workspace" src="../../assets/Workspace.svg" /> 
+            <!-- <i class="bx bx-bar-chart-square"></i> -->
+           <h5 class="tenant-name"> {{pd.ccC_Name}}</h5>
+           <div class="del-icon">
+           <i (click)="deleteTenant(pd.ccC_WorkspaceId)" class="bi bi-trash3-fill"></i>
+           </div>
+          
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <div class="rep-class">
-        <h6>Reports:</h6>
+    <mat-expansion-body class="mat-body">
+        <div class="rep-class">
+    <div class="ic-rep">
+        <img class="img" src="../../assets/Report.svg" />
+        <!-- <i class="fas fa-chart-area"></i> -->
+        <h6>Reports</h6>  
+    </div>
         <div *ngFor="let r of reports">
-        <label>{{r.name}}</label>
+        <label>{{r.name}}</label> 
+
+        <div class="dropdown">
+            <button class="dropbtn"><i class="bi bi-three-dots"></i></button>
+            <div class="dropdown-content">
+              <a href="#">View</a>
+              <a href="#">Export</a>
+              <a (click)="openCloneDialog(pd.ccC_WorkspaceId,r.id)" >Clone</a>
+              <a (click)="delReport(pd.ccC_WorkspaceId,r.id)">Delete</a>
+            </div>
+          </div> 
+
         </div>
-      </div>
+        </div>
       <div class="dash-class">
-      <h6>Dashboards:</h6>
+        <div class="ic-rep">
+        <img class="img" src="../../assets/Dashboard.svg" />
+        <h6>Dashboards</h6>
+    </div>
       <div *ngFor="let d of dashboards">
         <label>{{d.displayName}}</label>
+        <div class="dropdown">
+            <button class="dropbtn"><i class="bi bi-three-dots"></i></button>
+            <div class="dropdown-content">
+              <a href="#">Delete</a>
+              <a href="">View</a>
+              
+            </div>
+          </div>
       </div>
       </div>
       <div class="ds-class">
-      <h6>DataSets:</h6>
+        <div class="ic-rep">
+        <img class="img" src="../../assets/Dataset.svg" />
+      <h6>DataSets</h6>
+    </div>
       <div *ngFor="let ds of datasets">
         <label>{{ds.name}}</label>
+        <div class="dropdown">
+            <button class="dropbtn"><i class="bi bi-three-dots"></i></button>
+            <div class="dropdown-content">
+              <a (click)="deleteDataset(pd.ccC_WorkspaceId,ds.id)">Delete</a>              
+            </div>
+          </div>
         </div>
       </div>
-      
-
-      
-      <mat-action-row>
-        <button mat-button color="primary" (click)="nextStep()">Next</button>
-      </mat-action-row>
+    </mat-expansion-body>
     </mat-expansion-panel>
   </mat-accordion>
+  <div class="create">
+  <button  mat-stroked-button color="primary" (click)="openCreateDialog()">Create Workspace</button>
+  </div>
 
 
 
 
-
-<!-- <div class="jumbotron py-3">
-    <h1 class="display-4 text-center">Tenants</h1>
-</div>
-<div class="col-md-6">
-    <table class="table">
-        <thead class="head-light">
-            <tr>
-                <th>Tenant Name</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let pd of t">
-                <td>{{pd.ccC_Name}}</td>
-                <td> <button class="btn-detail" (click)="tenantDetails(pd.ccC_WorkspaceId)"> Details </button> </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table class="table">
-        <thead class="head-light">
-            <tr>
-                <th>Reports</th>
-                
-        </thead>
-        <tbody>
-            <tr *ngFor="let r of reports">
-                <td>{{r.name}}</td>  
-            </tr>
-        </tbody>
-    </table>
-    <table class="table">
-        <thead class="head-light">
-            <tr>
-                <th>Dashboards</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let d of dashboards">
-                <td>{{d.displayName}}</td>  
-            </tr>
-        </tbody>
-    </table>
-
-
-</div> -->

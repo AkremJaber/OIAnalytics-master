@@ -1,0 +1,36 @@
+<h2> Create Workspace</h2>
+            <form class="example-form" #tenantForm="ngForm" (ngSubmit)="CreateTenantListAADUser(tenantForm.value.SelValT,tenantForm.value.e)">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Workspace Name</mat-label>
+                    <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Tenant 01" value="">
+                  </mat-form-field>
+                  <br>
+
+                  <mat-form-field appearance="fill">
+                    <mat-label>Select an option</mat-label>
+                    <mat-select name="my-selectt" [(ngModel)]="mySelectAADUser" (selectionChange)="selectChangeAADUser()" multiple="multiple" >
+                    <!-- <select name="my-selectt" [(ngModel)]="mySelectTenant" (change)="selectChangeTenant()" multiple="multiple"> -->
+                        <mat-option [value]="itemt.uiD_Person" *ngFor="let itemt of t">
+                            {{itemt.displayName}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <ng-container >
+                      <div>
+                          Selected :
+                          <ul>
+                              <li *ngFor="let SelValT of selectedValueAADUser">{{SelValT.displayName}}</li>
+                          </ul>
+                      </div>
+                    </ng-container>
+                    <ng-template #elseTemplateT>
+                      <div>
+                          Selected:{{selectedValueAADUser}} 
+                      </div>
+                    </ng-template>
+
+                <br>
+
+                <button type="submit" class="btn btn-primary">Create</button>            
+            </form>

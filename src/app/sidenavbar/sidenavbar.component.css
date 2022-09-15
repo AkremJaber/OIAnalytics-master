@@ -188,7 +188,7 @@ nav:hover .shrink-btn,
 
 .icon i:last-child {
   opacity: 0;
-  color: #fff;
+  
 }
 
 .sidebar-links a.active,
@@ -386,4 +386,10 @@ body.shrink .admin-profile {
 
 body.shrink .tooltip {
   display: grid;
+}
+.img{
+  width: 20px !important;
+  height: 20px !important;
+  margin-left: 20px;
+ 
 }
