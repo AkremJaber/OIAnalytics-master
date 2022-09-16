@@ -1,5 +1,5 @@
 <h2> Create Workspace</h2>
-            <form class="example-form" #tenantForm="ngForm" (ngSubmit)="CreateTenantListAADUser(tenantForm.value.SelValT,tenantForm.value.e)">
+            <form class="example-form" #tenantForm="ngForm" (ngSubmit)="CreateTenantDictAADUser(tenantForm.value.SelValT,tenantForm.value.e)">
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Workspace Name</mat-label>
                     <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Tenant 01" value="">
