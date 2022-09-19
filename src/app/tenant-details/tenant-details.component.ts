@@ -1,17 +1,15 @@
-import { Component, OnInit,ChangeDetectorRef, AfterContentChecked } from '@angular/core';
-import { DataSet } from '../Shared/Models/DataSet/data-set.model';
-import { Report } from '../Shared/Models/Report/report.model';
-import { Dashboard } from '../Shared/Models/Dashboard/dashboard.model';
-import { TenantDetails } from '../Shared/Models/TenantDetails/tenant-details.model';
+import { Component, OnInit,ChangeDetectorRef, Input } from '@angular/core';
 import { TenantDetailsService } from '../Shared/Services/TenantDetails/tenant-details.service';
 import { TenantService } from '../Shared/Services/TenantService/tenant.service';
-import { ConnectedPositioningStrategy, HorizontalAlignment, VerticalAlignment, NoOpScrollStrategy, ISelectionEventArgs } from 'igniteui-angular';
-import { ItemModel } from '@syncfusion/ej2-angular-splitbuttons/public_api';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
 import { CreatePopupComponent } from '../create-popup/create-popup.component';
 import { DatasetService } from '../Shared/Services/datasetservice/dataset.service';
+import { ReportEmbedComponent } from '../report-embed/report-embed.component';
+import { ReportService } from '../Shared/Services/Report/report.service';
+import { Report } from '../Shared/Models/Report/report.model';
+import { DashboardService } from '../Shared/Services/DashboardService/dashboard.service';
+import { DashboardEmbedComponent } from '../dashboard-embed/dashboard-embed.component';
 
 
 
@@ -23,12 +21,18 @@ import { DatasetService } from '../Shared/Services/datasetservice/dataset.servic
 })
 export class TenantDetailsComponent implements OnInit {
 
-  constructor(public service:TenantService,public dsService:DatasetService, public detailService:TenantDetailsService,private changeDetector: ChangeDetectorRef,private dialog:MatDialog) { }
+ 
+
+  constructor(public dashService:DashboardService,public RepService:ReportService,public service:TenantService,public dsService:DatasetService, public detailService:TenantDetailsService,private dialog:MatDialog) { }
   public t:any;
   public TD:any
   public reports:any
   public dashboards:any
   public datasets:any
+  public EmbedUrl:any
+  public Token:any
+  public dashEmbedUrl:any
+  public dashToken:any
 
   get(){
     this.service.getTenants().subscribe((res: any)=>
@@ -54,6 +58,26 @@ export class TenantDetailsComponent implements OnInit {
     );
     
    }
+   ViewDashboard(ccC_WorkspaceId:string ,dashId:string){
+    this.dashService.getDashInfo(ccC_WorkspaceId,dashId).subscribe((res:any)=>
+    {
+      this.dashEmbedUrl= res.embedUrl
+      this.dashToken=res.token
+    });
+    this.dialog.open(DashboardEmbedComponent, {width:'900px', data:{DashEmbed:this.dashEmbedUrl,DashToken:this.dashToken}})
+   }
+
+   ViewReport(ccC_WorkspaceId:string ,reportId:string){
+
+   this.RepService.getReportInfo(ccC_WorkspaceId,reportId).subscribe((res:any)=>
+   {
+    this.EmbedUrl = res.embedUrl
+    this.Token = res.token
+   });
+  this.dialog.open(ReportEmbedComponent, {width:'900px', data:{RepEmbed:this.EmbedUrl,RepToken:this.Token}})
+    
+   }
+
    delReport(ccC_WorkspaceId:any ,reportId:any){
     console.log(ccC_WorkspaceId,reportId)
     if(confirm('Are you sure you want to delete this report ?'))

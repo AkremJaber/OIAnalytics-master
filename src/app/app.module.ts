@@ -39,6 +39,8 @@ import { PopupComponent } from './popup/popup.component';
 import { DatePipe } from '@angular/common';
 import { CreatePopupComponent } from './create-popup/create-popup.component';
 import { ReportEmbedComponent } from './report-embed/report-embed.component';
+import { DashboardEmbedComponent } from './dashboard-embed/dashboard-embed.component';
+
 
  enableRipple(true);
 @NgModule({
@@ -55,7 +57,9 @@ import { ReportEmbedComponent } from './report-embed/report-embed.component';
     TestComponent,
     PopupComponent,
     CreatePopupComponent,
-    ReportEmbedComponent
+    ReportEmbedComponent,
+    DashboardEmbedComponent,
+    
 
      
   ],

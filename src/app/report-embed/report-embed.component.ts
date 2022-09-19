@@ -1,4 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { createInjectableType } from '@angular/compiler';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IReportEmbedConfiguration, models, service } from 'powerbi-client';
 import { PowerBIReportEmbedComponent } from 'powerbi-client-angular';
 import { reportUrl, errorElement, errorClass, hidden, position, successElement, successClass } from 'src/constants';
@@ -33,13 +35,16 @@ export class ReportEmbedComponent implements OnInit {
   // Flag which specify the type of embedding
   phasedEmbeddingFlag = false;
 
+  token:any=this.data.RepToken
+  url:any=this.data.RepEmbed
   // Pass the basic embed configurations to the wrapper to bootstrap the report on first load
   // Values for properties like embedUrl, accessToken and settings will be set on click of button
   reportConfig: IReportEmbedConfiguration = {
     type: 'report',
-    embedUrl: "https://app.powerbi.com/reportEmbed?reportId=bb7f70d0-8db8-482c-86ab-a42edd3c4e13&groupId=ddbb5f1e-e715-426f-8888-793c4359f0c2&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLU5PUlRILUVVUk9QRS1RLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7Im1vZGVybkVtYmVkIjp0cnVlLCJ1c2FnZU1ldHJpY3NWTmV4dCI6dHJ1ZX19",
+    embedUrl: this.url,
     tokenType: models.TokenType.Embed,
-    accessToken: "H4sIAAAAAAAEAB3St7KDVgBF0X95LZ4hJ8-4IGcQEiLcDrhkkRHJ43_3s_tdrXP-_nmk12dM4c-fP_Z1O9GTXGAgzptqELuGEgUZ7W1teqJMfISqXGlNJmPZkLGOtIGp-PLMy4-hY67ARr4Zss730teepD_M5FmW5to1zQ3ENREnZPm-h9xBSHu2i6NsLL80jlB62t1-LFpQwYbiTZyuchco2vhJIF4yS0t8hzA7KXk2LEC6NdU_V4DiA-oKaMPMVWranO30Rz01pZttg_WwRbJBDxhn6iglmr71ylgS9ziXcXERn3QBm58QQWwebv94itLOfSz_ZM94yIgAilFS3grZKLcS4Mo3wBFMGGyfGt6zaEBLn16lrU2eNugXUWN47eUfS-n2myyIi6xFnLQ3fmX1DfpHrw9xsY4NDZGgZCbMVbo1itp-WI25U-dKh3L8UWeUWEGe7GTwNLEacIarhTTC6GLQ6s6cz4uHkvvjoYD3bX28K-jT6WKf2dxjAzVRqMVsOd3Tn6gjzbXXkne7RVVmcYfHQCiwBuNrEbspQVTmM9pU2pMXpcPYDkBuQmWeG-gGilROjzB2oShKQAJ7HylDhn4Gd6gf8dMclqniKapS4Ktgy7qjYJFxtlrfbK1aRYchh0959tYfxcHyarPgJA6drApB1PpALT7HiphaoZGFOF8DsYx1Bk7-NGzrKu1MnzIzQb34jMT-u-RETWbOc3e_QBc2nwuiOeXoS4tcLreqiJebesU6pOikQBxPoTHNuw1Y0dPwAkZTN2JJeXr0YyvHeSTyK-ZW0Y8rPqL8XEmCCDKbWiA5OtK689fPHz_Sck3baBXX7_Wf34tTqe1lM3NAUqVQJW3LBcvxO2F0pvLJAt4ZoKVCTeqLOU9fJIlJjvPuHGWxxneWdVHzSqVelb_xjvLzkQsWX0J-l4LBZb5ibOyuFRniegSlrwY-FvlLa0zr4fBsP4-bUhmlrmbRTQQrd9JIfqf7VLNSNIvqQOBCiHeLvBDC_kshf92ZlKsarBrmew52mhrS44xB9xwumNpaP4CFBC-CYISkBdB3ksAF4Wc1O1IFD6OPhaOHcfTy8vtlE4RZn3yhuHTxdjgN36dQDHFDnO4ebkXurOrG2tvknaV4pHxCPHjfihsx3nY2faIr7Q05CD1cBUib1uSWVRlbsGmhhkJICX_9z3xNdbEY4a9yw89lfmzs8ehVxDTZRzS7efV_9WqqId2-S_GbCXKzAEKQ6lm10aAmKIQ3QE2OrbN8QmFV033nvmhrYafkw6nviNwOn59crLtzoRVgqJHZkHOKuS5zbH2reKCwqwV874Zdtmh-hw8vpJ85yx2RcZfKMvlI4KdU5Lwx7sWX6JoMBouwe1opfAq9sAWtNDNbLL-mcl3HRUC93oD8u8CPUrXX2VpqAY2Bg1mh6IcYzrtA8K3Ben-3cZg-Z4mW0FyloG16-K3KB88IukeLbwWM4T6wMEj0z0QU8pFO-g1rNgXrV7jQfkFyTLd6OFmHdNGH4qBrIHx4s8XF14Y55xNhS-vK3omwKLfHhKIzvKnbEGD_PJID0eFxHvXBKams8O__mP_5F1MhDMTuBQAA.eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLU5PUlRILUVVUk9QRS1RLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7Im1vZGVybkVtYmVkIjpmYWxzZX19",
+    //accessToken: "H4sIAAAAAAAEAB3Ut66EVgBF0X95LZYYhmzJBXDJOYeOnIYwZLD87352v6ulo_P3j5Xenyktfv78IRkFpcd07Ow-PEkvCPDpTWujTYnHR68_de5j-UEkkeJ8qNCdE-lstypmqwnLt-VlvTyOWqWLg9T30MhyhosHZZaWkb92lTwlk-MrOum0vOrNPk3woItSB1rckU-Lhygi7UUjfoOKtwfFomK5g9yVNU18JiSw5puEcs4_yVLin9nH4M0fe6tRA7SYQuOwlUtcRzhmd5ji4O9SCKsYhkFdcOUr0kvuVPmsYNysCJSl3Hrbf-mQj0RtvI0rYBt8uIHNbqmYRaRWv5jUAHQLI5LHw3vivNjWWEw5JUMEZ0bijLgQsDlqo_C5e3vw1J9j2rXs3uutjAP6dMl7l5LVLlbhYNV0VfFh7XTSPe7TYgV_7XuM4FIHdF5UAVhL1Za5jhhGsGdAt2HlTpO-sklSpzFlfU8_Pyuy3zDKfBiJvwuxbQl9aULDi22xdfY61w0N01OYFHSBpnMAv4N6vAClOCZM6HhiE-sHIfI6aKgQo220a-xgZlClX1w6i1gOS80vA_uY61jOd02aGYoafyTXMTctNJUF3Q7G3yxdF0o0Q4N0Pp-seMn-E0BSzluaBssBezpl-X41WDTUU1J-lNetQm__qTRApPyND_HwLtsKoYrPE4xc-eSz5NT21Uhl8XyBi6UfSj641pqL9HmSQG-M_RA3dGBEuVv53VhLA0LcDtCgs9_PIANcYZmezY4kvnjuZOlWKKJOUCu6noWTHMohhdQVXc9G5xJhhc5gQGNEmWJ3INMS5P1fP3_8cMs9b5Na3r_TX4ThC3hlL7Mh0u9iOKoqYZxOZ0TmqSwJ8mUAliYCqhUMMtkjyZnzwya7nh0YnW7D31dC0XAcb3mxVMCJlSTfJwTKsnKAfAVkm1_kqkrYi4bxYpLRgpIGKUtD-lO_CkWQtrFgmreXvGM6zHy7VviSoujyOC4mkYIHQ3QK1r-LhXWTlydQBxCEDexGhPgkKNepRVh0zYnI5V4YO26d6FIDc3leewvsVt--QsdbHQ1laUv8XLmbpywTY-iYWhab2wk6v08oeBY-fkMbepqe7GET0A1Ua-8ZLPBXgBJOT861snXeLcmw8mXvevPgqS8vx_VmudEtSFGhYqVR0RbQR9hmxfVf_zPfc1MucvCr_BgPcRJixK2WDcwOZDAuwPb_ldvWY7rtS_mb-UJfIewCnJAeT89r-Ib8usLbMI8ubK4DxDJNdNFAfxUwd5gt8FrXFBdhF8mE3xA-Vny_yIbMOiq0rw2z9hw_LhcfZptYk7mXRPd53HfTmUPict2XUGrbjHiGDKfZYokx7jl6fUoXJ7uerf2dRruYX8WxnzEcl7TUgruEwnhHm-kIRl4D7GQYj1zhBxv6TUHlWy7x9vJuE1Tz5zCCDcaiN2JSTOywQ_m0EotREZANXlOlWJcgKxqKqIBXO3pNmJCwGiMnURhE6_1U3rTXuLR7-iREmtZIS0MLEkI9EfXUX-QddQmymKGYUfeOsOxtWTU_hvFdKqz8_Pddq7HRIlV0FXP-Mv_zL3IYGNbuBQAA.eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLU5PUlRILUVVUk9QRS1RLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7Im1vZGVybkVtYmVkIjpmYWxzZX19",
+    accessToken: this.token,
     settings: undefined,
   };
 
@@ -78,7 +83,7 @@ export class ReportEmbedComponent implements OnInit {
     ['pageChanged', (event) => console.log(event)],
   ]);
 
-  constructor(public httpService: HttpService, private element: ElementRef<HTMLDivElement>) { }
+  constructor(public httpService: HttpService, private element: ElementRef<HTMLDivElement>,@Inject(MAT_DIALOG_DATA) public data:any) { }
 
   async embedReport(): Promise<void> {
     
@@ -138,6 +143,9 @@ export class ReportEmbedComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // console.log(this.token)
+    // console.log(this.url)
+
   }
 
 }

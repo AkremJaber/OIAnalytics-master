@@ -26,7 +26,7 @@
         <div class="dropdown">
             <button class="dropbtn"><i class="bi bi-three-dots"></i></button>
             <div class="dropdown-content">
-              <a href="#">View</a>
+              <a (click)="ViewReport(pd.ccC_WorkspaceId,r.id)">View</a>
               <a href="#">Export</a>
               <a (click)="openCloneDialog(pd.ccC_WorkspaceId,r.id)" >Clone</a>
               <a (click)="delReport(pd.ccC_WorkspaceId,r.id)">Delete</a>
@@ -46,7 +46,7 @@
             <button class="dropbtn"><i class="bi bi-three-dots"></i></button>
             <div class="dropdown-content">
               <a href="#">Delete</a>
-              <a href="">View</a>
+              <a (click)="ViewDashboard(pd.ccC_WorkspaceId,d.id)">View</a>
               
             </div>
           </div>

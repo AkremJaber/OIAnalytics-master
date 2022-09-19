@@ -42,25 +42,22 @@ export class CreatePopupComponent implements OnInit {
   //   window.location.reload();
   //  }
 
-   CreateTenantDictAADUser(name:any,list:any){
+  CreateTenantDictAADUser(name:any,list:any){
     name=this.e
     list=this.selectedValueAADUser
-    let map = new Map<string,string>();
-    let dictionary:any;
+    var dict = []; // create an empty array
     for (let item of list) {
-      let test = new Object();
-      test={ uid:item.uiD_Person , access:'Admin'};
-      let data: any
-      data.set(test);
-      map.set( item.uiD_Person , 'Admin'); 
-      dictionary = Object.assign({}, ...data.map((x:any) => ({[x.uid]: x.access})));
-      console.log(dictionary.uid);
-      console.log(map.values())
+      dict.push({
+        UID_Person:item.uiD_Person,
+        accessRight: 'Admin'
+})
+      console.log(dict)
   }
-  
-    this.ADuserService.CreateListAADUser(name,dictionary).subscribe()
-    // window.location.reload();
+    this.ADuserService.CreateListAADUser(name,dict).subscribe()
+    window.location.reload();
    }
+
+
 
   ngOnInit(): void {
     this.getAADUser();
