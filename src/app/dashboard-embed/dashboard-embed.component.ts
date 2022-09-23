@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IDashboardEmbedConfiguration, models } from 'powerbi-client';
+import { PowerBIDashboardEmbedComponent, PowerBIReportEmbedComponent } from 'powerbi-client-angular';
 
 @Component({
   selector: 'app-dashboard-embed',
@@ -7,19 +9,26 @@ import { IDashboardEmbedConfiguration, models } from 'powerbi-client';
   styleUrls: ['./dashboard-embed.component.css']
 })
 export class DashboardEmbedComponent implements OnInit {
+  
+  dashClass = 'dashboard-container hidden';
+  
+  token:any=this.data.DashToken
+  url:any=this.data.DashEmbed
+  id:any=this.data.Id
+  
+  
+  
+  dashConfig: IDashboardEmbedConfiguration = {
+    type: 'dashboard',
+    id:this.id,
+    embedUrl: this.url,
+    accessToken: this.token,
+    tokenType: models.TokenType.Embed
+  };
 
-  // dashConfig: IDashboardEmbedConfiguration = {
-  //   type: 'dashboard',
-  //   embedUrl: this.url,
-  //   id: string;
-  //   accessToken: string;
-  //   pageView?: models.PageView 
-  //   tokenType?: models.TokenType;
-  // };
-
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any) { }
 
   ngOnInit(): void {
+    console.log(this.token)
   }
-
 }

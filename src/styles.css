@@ -6,8 +6,14 @@ iframe {
   .report-container {
     height: 75vh;
     margin: 8px auto;
-    width: 90%;
+    width: 100%;
   }
   
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.dashboard-container {
+  height: 75vh;
+  margin: 8px auto;
+  width: 100%;
+}

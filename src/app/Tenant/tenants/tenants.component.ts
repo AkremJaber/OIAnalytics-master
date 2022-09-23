@@ -65,7 +65,6 @@ export class TenantsComponent implements OnInit {
       {
        //this.perso = res
         this.t=res
-        
       }
       );
    }
@@ -77,7 +76,6 @@ export class TenantsComponent implements OnInit {
     window.location.reload();
     }
   }
-
 
   mySelectTenant = [];
    selectedValueTenant:any;

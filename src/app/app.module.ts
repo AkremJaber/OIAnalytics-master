@@ -8,7 +8,7 @@ import { TenantsComponent } from './Tenant/tenants/tenants.component';
 import { TenantsHasPersonsComponent } from './TenantHasPersons/tenants-has-persons/tenants-has-persons.component';
 import { DpMultiComponent } from './dp-multi/dp-multi.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { TenantDetailsComponent } from './tenant-details/tenant-details.component';
 import { RouterModule, Routes } from '@angular/router';
 import { TenantRDDComponent } from './tenant-rdd/tenant-rdd.component';
@@ -40,6 +40,14 @@ import { DatePipe } from '@angular/common';
 import { CreatePopupComponent } from './create-popup/create-popup.component';
 import { ReportEmbedComponent } from './report-embed/report-embed.component';
 import { DashboardEmbedComponent } from './dashboard-embed/dashboard-embed.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule} from '@angular/material/card';
+import { DashboardsComponent } from './dashboards/dashboards.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 
  enableRipple(true);
@@ -59,6 +67,8 @@ import { DashboardEmbedComponent } from './dashboard-embed/dashboard-embed.compo
     CreatePopupComponent,
     ReportEmbedComponent,
     DashboardEmbedComponent,
+    DashboardsComponent
+
     
 
      
@@ -85,14 +95,19 @@ import { DashboardEmbedComponent } from './dashboard-embed/dashboard-embed.compo
 	  IgxToggleModule,
     MatDialogModule,
     NgbModule,
+    FlexLayoutModule,
+    MatCardModule,
+    MatTabsModule,
+    MatListModule,
+    MatIconModule,
+    MatStepperModule,
+    ReactiveFormsModule 
     
     
 
   ],
-  providers: [DatePipe, TenantDetailsComponent],
+  providers: [DatePipe, TenantDetailsComponent,],
   bootstrap: [AppComponent],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

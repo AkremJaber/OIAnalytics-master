@@ -1,1 +1,91 @@
-<p>dashboards works!</p>
+<!-- <div class="jumbotron py-3">
+  <h1 class="display-4 text-center">Dashboards</h1>
+</div>
+
+
+<mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your Dashboard name</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Dashboard Name</mat-label>
+        <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Workspace 01" value="">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Select a Workspace</ng-template>
+      <mat-form-field appearance="fill">
+        
+        <mat-select name="my-selectt" [(ngModel)]="mySelectTenant" (selectionChange)="selectChangeTenant()">
+          <mat-option [value]="itemt.ccC_WorkspaceId" *ngFor="let itemt of t">
+              {{itemt.ccC_Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Confirmation</ng-template>
+    
+    <div>
+      <button mat-button matStepperPrevious >Confirm</button>
+      <button mat-button (click)="stepper.previous()">Previous</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      
+
+    </div>
+  </mat-step>
+</mat-stepper> -->
+
+
+
+<div class="jumbotron py-3">
+  <h1 class="display-4 text-center">Dashboards</h1>
+</div>
+
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Success ! </strong> Dashboard created successfully.
+</div>
+<form class="example-form" #tenantForm="ngForm" (ngSubmit)="createDash(tenantForm.value.SelValT,tenantForm.value.e)">
+    <mat-form-field appearance="fill">
+      <mat-label>Select a Workspace</mat-label>
+      <mat-select name="my-selectt" [(ngModel)]="mySelectTenant" (selectionChange)="selectChangeTenant()" placement="top" ngbTooltip="Where the dashboard will be created">
+          <mat-option [value]="itemt.ccC_WorkspaceId" *ngFor="let itemt of t">
+              {{itemt.ccC_Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <ng-container >
+        <div class="hide">
+            Selected :
+            <ul>
+                <li *ngFor="let SelValT of selectedValueTenant">{{SelValT.ccC_Name}}</li>
+            </ul>
+        </div>
+      </ng-container>
+      <ng-template #elseTemplateT>
+        <div>
+            Selected:{{selectedValueTenant}} 
+        </div>
+      </ng-template>
+
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Dashboard Name</mat-label>
+    <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Tenant 01" value="">
+  </mat-form-field>
+  <br>
+  <button type="submit" class="btn btn-primary">Create</button>            
+</form>
+

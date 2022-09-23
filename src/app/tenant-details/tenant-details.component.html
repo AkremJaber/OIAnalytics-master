@@ -1,5 +1,3 @@
-
- 
 <mat-accordion class="example-headers-align">
     <mat-expansion-panel class="overflow-init" hideToggle (click)="tenantDetails(pd.ccC_WorkspaceId)" *ngFor="let pd of t">
       <mat-expansion-panel-header class="panel-header">
@@ -27,6 +25,7 @@
             <button class="dropbtn"><i class="bi bi-three-dots"></i></button>
             <div class="dropdown-content">
               <a (click)="ViewReport(pd.ccC_WorkspaceId,r.id)">View</a>
+              <a (click)="EditReport(pd.ccC_WorkspaceId,r.id)">Edit</a>
               <a href="#">Export</a>
               <a (click)="openCloneDialog(pd.ccC_WorkspaceId,r.id)" >Clone</a>
               <a (click)="delReport(pd.ccC_WorkspaceId,r.id)">Delete</a>

@@ -10,7 +10,9 @@ import { TenantService } from '../Shared/Services/TenantService/tenant.service';
 })
 export class CreatePopupComponent implements OnInit {
 
+  
   constructor(public service:TenantService, public ADuserService:AaduserService) { }
+  
 
   public t:any;
   e:string

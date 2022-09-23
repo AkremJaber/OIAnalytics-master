@@ -15,8 +15,8 @@ export class TenantDetailsService {
   constructor(private http: HttpClient) { }
   list: TenantDetails[];
   readonly getTenant= 'https://localhost:44361/api/TenantDetails';
-  readonly delReport= 'https://localhost:44361/api/EmbeddedReport';
-  readonly clone= 'https://localhost:44361/api/EmbeddedReport';
+  readonly delReport= 'https://localhost:44361/api/EmbeddedReport/DeleteReport';
+  readonly clone= 'https://localhost:44361/api/EmbeddedReport/CloneReport';
 
 
   

@@ -47,7 +47,7 @@
                 </mat-form-field>
                   <!-- <h4>Selected Tenants:</h4>     -->
                   <ng-container >
-                    <div>
+                    <div class="hide">
                         Selected :
                         <ul>
                             <li *ngFor="let SelValT of selectedValueTenant">{{SelValT.ccC_Name}}</li>
@@ -59,6 +59,7 @@
                         Selected:{{selectedValueTenant}} 
                     </div>
                   </ng-template>
+                  <br>
                   
                   <mat-form-field appearance="fill">
                     <mat-label>Select an option</mat-label>  

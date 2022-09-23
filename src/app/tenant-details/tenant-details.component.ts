@@ -10,6 +10,7 @@ import { ReportService } from '../Shared/Services/Report/report.service';
 import { Report } from '../Shared/Models/Report/report.model';
 import { DashboardService } from '../Shared/Services/DashboardService/dashboard.service';
 import { DashboardEmbedComponent } from '../dashboard-embed/dashboard-embed.component';
+import { timer, take } from 'rxjs';
 
 
 
@@ -42,6 +43,8 @@ export class TenantDetailsComponent implements OnInit {
       }
       );
    }
+
+
    tenantDetails(ccC_WorkspaceId:string){
     this.detailService.getTenantDetail(ccC_WorkspaceId).subscribe((res:any)=>
     {
@@ -49,35 +52,42 @@ export class TenantDetailsComponent implements OnInit {
       this.dashboards=res.dashboard
       this.datasets=res.datasets
       this.TD=res
-      // console.log(this.TD)
-      // console.log(this.reports)
-      // console.log(this.dashboards)
-      // console.log(this.datasets)
-
-    }
-    );
-    
+    });
    }
-   ViewDashboard(ccC_WorkspaceId:string ,dashId:string){
+
+   async ViewDashboard(ccC_WorkspaceId:string ,dashId:string){
     this.dashService.getDashInfo(ccC_WorkspaceId,dashId).subscribe((res:any)=>
     {
-      this.dashEmbedUrl= res.embedUrl
+      this.dashEmbedUrl=  res.embedUrl
       this.dashToken=res.token
-    });
-    this.dialog.open(DashboardEmbedComponent, {width:'900px', data:{DashEmbed:this.dashEmbedUrl,DashToken:this.dashToken}})
+    });  
+    await timer(3000).pipe(take(1)).toPromise();
+    this.dialog.open(DashboardEmbedComponent, {width:'1200px' , data:{DashEmbed:this.dashEmbedUrl,DashToken:this.dashToken,Id:dashId}})
    }
-
-   ViewReport(ccC_WorkspaceId:string ,reportId:string){
-
+   
+  async ViewReport(ccC_WorkspaceId:string ,reportId:string){
    this.RepService.getReportInfo(ccC_WorkspaceId,reportId).subscribe((res:any)=>
    {
     this.EmbedUrl = res.embedUrl
     this.Token = res.token
+
    });
-  this.dialog.open(ReportEmbedComponent, {width:'900px', data:{RepEmbed:this.EmbedUrl,RepToken:this.Token}})
-    
+   await timer(2000).pipe(take(1)).toPromise();
+   this.dialog.open(ReportEmbedComponent, {width:'1200px', data:{RepEmbed:this.EmbedUrl,RepToken:this.Token}})
    }
 
+   async EditReport(ccC_WorkspaceId:string ,reportId:string){
+    this.RepService.getEditReport(ccC_WorkspaceId,reportId).subscribe((res:any)=>
+    {
+     this.EmbedUrl = res.embedUrl
+     this.Token = res.token
+    });
+
+   await timer(1000).pipe(take(1)).toPromise();
+
+    this.dialog.open(ReportEmbedComponent, {width:'1200px', data:{RepEmbed:this.EmbedUrl,RepToken:this.Token}})
+
+   }
    delReport(ccC_WorkspaceId:any ,reportId:any){
     console.log(ccC_WorkspaceId,reportId)
     if(confirm('Are you sure you want to delete this report ?'))
@@ -94,8 +104,7 @@ export class TenantDetailsComponent implements OnInit {
     window.location.reload();
     }
   }
-  // WSID:any
-  // repID:any
+  
   openCloneDialog(ccC_WorkspaceId:string,reportId:string){
   this.dialog.open(PopupComponent, {width:'400px' , data:{WSID:ccC_WorkspaceId,repID:reportId}})
   }
@@ -105,15 +114,13 @@ export class TenantDetailsComponent implements OnInit {
    }
 
    deleteDataset(ccC_WorkspaceId:string,datasetID:string){
-   
     if(confirm('Are you sure you want to delete this dataset ?'))
     {
       this.dsService.deleteDataset(ccC_WorkspaceId,datasetID).subscribe()
       window.location.reload();
     }
-
    }
-
+   
   ngOnInit(): void {
     this.service.getTenants().subscribe();
     this.get();

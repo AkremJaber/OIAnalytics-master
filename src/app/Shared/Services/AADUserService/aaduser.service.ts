@@ -36,6 +36,7 @@ export class AaduserService {
       aadUser: adUser
       }
       const body=JSON.stringify(postData)
+      
       return this.http.post(this.CreateTenantListAADUser,body,httpOptions)
   }
 
