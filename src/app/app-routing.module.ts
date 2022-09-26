@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DashboardsComponent } from './dashboards/dashboards.component';
 import { DpMultiComponent } from './dp-multi/dp-multi.component';
+import { GroupUsersComponent } from './group-users/group-users.component';
 import { ReportEmbedComponent } from './report-embed/report-embed.component';
 import { TenantDetailsComponent } from './tenant-details/tenant-details.component';
 import { TenantsComponent } from './Tenant/tenants/tenants.component';
@@ -16,7 +17,9 @@ const routes: Routes = [
 {path:'OIAnalytics',component:AppComponent},
 {path:'TenantDetails',component:TenantDetailsComponent},
 {path:'ReportEmbed',component:ReportEmbedComponent},
-{path:'Dashboards',component:DashboardsComponent}
+{path:'Dashboards',component:DashboardsComponent},
+{path:'GroupUsers',component:GroupUsersComponent}
+
 
 
 ];

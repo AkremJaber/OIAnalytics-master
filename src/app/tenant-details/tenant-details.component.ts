@@ -11,6 +11,7 @@ import { Report } from '../Shared/Models/Report/report.model';
 import { DashboardService } from '../Shared/Services/DashboardService/dashboard.service';
 import { DashboardEmbedComponent } from '../dashboard-embed/dashboard-embed.component';
 import { timer, take } from 'rxjs';
+import { GroupUsersComponent } from '../group-users/group-users.component';
 
 
 
@@ -64,6 +65,15 @@ export class TenantDetailsComponent implements OnInit {
     await timer(3000).pipe(take(1)).toPromise();
     this.dialog.open(DashboardEmbedComponent, {width:'1200px' , data:{DashEmbed:this.dashEmbedUrl,DashToken:this.dashToken,Id:dashId}})
    }
+
+   DeleteDash(ccC_WorkspaceId:string ,dashId:string){
+    if(confirm('Are you sure you want to delete this dashboard ?'))
+    {
+    this.dashService.DelDash(ccC_WorkspaceId,dashId).subscribe()
+    window.location.reload();
+
+   }
+  }
    
   async ViewReport(ccC_WorkspaceId:string ,reportId:string){
    this.RepService.getReportInfo(ccC_WorkspaceId,reportId).subscribe((res:any)=>
@@ -103,6 +113,10 @@ export class TenantDetailsComponent implements OnInit {
     this.service.deleteTenant(id).subscribe()
     window.location.reload();
     }
+  }
+
+  OpenGroupUsers(ccC_WorkspaceId:string){
+    this.dialog.open(GroupUsersComponent, {width:'2000px', data:{WSID:ccC_WorkspaceId}})
   }
   
   openCloneDialog(ccC_WorkspaceId:string,reportId:string){

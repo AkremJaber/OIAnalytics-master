@@ -47,6 +47,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatStepperModule} from '@angular/material/stepper';
+import { GroupUsersComponent } from './group-users/group-users.component';
 
 
 
@@ -67,7 +68,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     CreatePopupComponent,
     ReportEmbedComponent,
     DashboardEmbedComponent,
-    DashboardsComponent
+    DashboardsComponent,
+    GroupUsersComponent
 
     
 

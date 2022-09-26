@@ -1,24 +1,24 @@
-<!-- <div class="jumbotron py-3">
+<div class="jumbotron py-3">
   <h1 class="display-4 text-center">Dashboards</h1>
 </div>
 
 
 <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+  <mat-step >
+    <form class="example-form" #tenantForm="ngForm">
       <ng-template matStepLabel>Fill out your Dashboard name</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Dashboard Name</mat-label>
-        <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Workspace 01" value="">
+        <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Dashboard 01" value="">
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Select a Workspace</ng-template>
+  <mat-step >
+    <form >
+      <ng-template matStepLabel>Select which workspace the Dashboard will be created in</ng-template>
       <mat-form-field appearance="fill">
         
         <mat-select name="my-selectt" [(ngModel)]="mySelectTenant" (selectionChange)="selectChangeTenant()">
@@ -29,26 +29,16 @@
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button (click)="createDash(tenantForm.value.SelValT,tenantForm.value.e)" >Confirm</button>
       </div>
     </form>
   </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Confirmation</ng-template>
-    
-    <div>
-      <button mat-button matStepperPrevious >Confirm</button>
-      <button mat-button (click)="stepper.previous()">Previous</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-      
-
-    </div>
-  </mat-step>
-</mat-stepper> -->
+  
+</mat-stepper>
 
 
 
-<div class="jumbotron py-3">
+<!-- <div class="jumbotron py-3">
   <h1 class="display-4 text-center">Dashboards</h1>
 </div>
 
@@ -87,5 +77,5 @@
   </mat-form-field>
   <br>
   <button type="submit" class="btn btn-primary">Create</button>            
-</form>
+</form> -->
 

@@ -57,13 +57,14 @@ export class DashboardsComponent implements OnInit {
     console.log(ccC_WorkspaceId)
     this.dashService.CreateDashboard(name,ccC_WorkspaceId).subscribe()
     window.location.reload();
-    this.alert=true
+    //this.alert=true
     
    }
 
   ngOnInit(): void {
     this.get()
     this.selectChangeTenant()
+    console.log(this.e)
     
     
 

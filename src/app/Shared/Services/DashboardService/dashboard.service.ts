@@ -37,4 +37,12 @@ export class DashboardService {
 return this.http.post(this.Dash,postData)
   }
 
+  DelDash(workspaceId:string,dashID:string){
+    const postData = {
+      ccC_WorkspaceId: workspaceId,
+      DashboardId: dashID
+}
+    return this.http.delete(this.Dash,{params:postData})
+  }
+
 }

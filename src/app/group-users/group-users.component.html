@@ -1,0 +1,27 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Display name</th>
+      <th scope="col">Email address</th>
+      <th scope="col">Identifier</th>
+      <th scope="col">Access rights</th>
+      <th scope="col">Principle type</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let grp of GrpUsr; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ grp.displayName }}
+      </td>
+      <td>{{ grp.emailAddress}}</td>
+      <td>{{ grp.identifier}}</td>
+      <td>{{ grp.groupUserAccessRight}}</td>
+      <td>{{ grp.principalType}}</td>
+
+    </tr>
+    </tbody>
+  </table>

@@ -6,7 +6,8 @@
             <!-- <i class="bx bx-bar-chart-square"></i> -->
            <h5 class="tenant-name"> {{pd.ccC_Name}}</h5>
            <div class="del-icon">
-           <i (click)="deleteTenant(pd.ccC_WorkspaceId)" class="bi bi-trash3-fill"></i>
+           <i placement="top" ngbTooltip="Delete Workspace"(click)="deleteTenant(pd.ccC_WorkspaceId)" class="bi bi-trash3-fill"></i>
+           <i placement="top" ngbTooltip="Group Users list" (click)="OpenGroupUsers(pd.ccC_WorkspaceId)" class="bi bi-person-workspace"></i>
            </div>
           
         </mat-panel-title>
@@ -44,8 +45,9 @@
         <div class="dropdown">
             <button class="dropbtn"><i class="bi bi-three-dots"></i></button>
             <div class="dropdown-content">
-              <a href="#">Delete</a>
               <a (click)="ViewDashboard(pd.ccC_WorkspaceId,d.id)">View</a>
+              <a (click)="DeleteDash(pd.ccC_WorkspaceId,d.id)">Delete</a>
+              
               
             </div>
           </div>
