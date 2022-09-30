@@ -11,6 +11,8 @@ export class AaduserService {
 
   readonly baseURL = 'https://localhost:44361/api/AADUser';
   readonly CreateTenantListAADUser = 'https://localhost:44361/api/Tenants/CreateTenantListAADUser';
+  readonly UpdateTenantListAADUser = 'https://localhost:44361/api/Tenants/AddGroupUsers';
+
 
 
   getAADUsers():any{
@@ -39,6 +41,24 @@ export class AaduserService {
       
       return this.http.post(this.CreateTenantListAADUser,body,httpOptions)
   }
+
+  UpdateListAADUser(CCC_WorkspaceId:any,adUser:any,AccessRight:any){
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    }
+    const postData = {
+      CCC_WorkspaceId: CCC_WorkspaceId,
+      aadUser: adUser,
+      groupUserAccessRight:AccessRight
+      }
+      const body=JSON.stringify(postData)
+
+      return this.http.post(this.UpdateTenantListAADUser,body,httpOptions)
+
+      
+
+  }
+
 
 }
 

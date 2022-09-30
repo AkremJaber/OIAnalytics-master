@@ -34,18 +34,22 @@
         <div class="u-container-layout u-container-layout-10">
           <div class="form-area">
 
+           
+            
             <h2>Assign workspace to users:</h2>
-            <form #thpForm="ngForm" (ngSubmit)="AddAdmin(thpForm.value.SelValT,thpForm.value.SelValUser)">
-                <mat-form-field appearance="fill">
-                <mat-label>Select an option</mat-label>
-                <mat-select name="my-selectt" [(ngModel)]="mySelectTenant" (selectionChange)="selectChangeTenant()" >
-                <!-- <select name="my-selectt" [(ngModel)]="mySelectTenant" (change)="selectChangeTenant()" multiple="multiple"> -->
-                    <mat-option [value]="itemt.ccC_WorkspaceId" *ngFor="let itemt of t">
-                        {{itemt.ccC_Name}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-                  <!-- <h4>Selected Tenants:</h4>     -->
+            
+            <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+              <mat-step >
+                <form class="example-form" #tenantForm="ngForm">
+                  <ng-template matStepLabel>Please select a workspace</ng-template>
+                  <mat-form-field appearance="fill">
+                    
+                    <mat-select name="my-selectt" [(ngModel)]="mySelectTenant" (selectionChange)="selectChangeTenant()">
+                      <mat-option [value]="itemt.ccC_WorkspaceId" *ngFor="let itemt of t">
+                          {{itemt.ccC_Name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
                   <ng-container >
                     <div class="hide">
                         Selected :
@@ -59,26 +63,62 @@
                         Selected:{{selectedValueTenant}} 
                     </div>
                   </ng-template>
-                  <br>
-                  
+                  <div>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+
+              </mat-step>
+              <mat-step >
+                <form >
+                  <ng-template matStepLabel>Select which users will be assigned to the selected workspace</ng-template>
                   <mat-form-field appearance="fill">
-                    <mat-label>Select an option</mat-label>  
-                      <mat-select name="users" [(ngModel)]="userSelect" (selectionChange)="selectChangeUser()" multiple="multiple" > 
-                        <mat-option [value]="varTest1.name" *ngFor="let varTest1 of emails">{{varTest1.name}}</mat-option>
+                    <mat-label>Select an option</mat-label>
+                    <mat-select name="my-selectt" [(ngModel)]="mySelectAADUser" (selectionChange)="selectChangeAADUser()" multiple="multiple" >
+                   
+                        <mat-option [value]="itemu.uiD_Person" *ngFor="let itemu of u">
+                            {{itemu.displayName}}
+                        </mat-option>
                       </mat-select>
                     </mat-form-field>
-                      <ng-container >
-                        <div>
-                            Selected :
-                            <ul>
-                                <li *ngFor="let SelValUser of selectedValueUser">{{SelValUser.name}}</li>
-                            </ul>
-                        </div>
-                      </ng-container>
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                    <ng-container >
+                      <div>
+                          Selected :
+                          <ul>
+                              <li *ngFor="let SelValU of selectedValueAADUser">{{SelValU.displayName}}</li>
+                          </ul>
+                      </div>
+                    </ng-container>
+                    <ng-template #elseTemplateT>
+                      <div>
+                          Selected:{{selectedValueAADUser}} 
+                      </div>
+                    </ng-template>
+                    <mat-step >
+                      <ng-template matStepLabel>Select which permission </ng-template>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Select an option</mat-label>  
+                      <mat-select name="users" [(ngModel)]="mySelectAccessRight" (selectionChange)="selectChangeAccessRight()" > 
+                        <mat-option [value]="varTest1.name" *ngFor="let varTest1 of AccessRights">{{varTest1.name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <ng-container >
+                      <div class="hide">
+                          Selected :
+                          <ul>
+                              <li *ngFor="let SelValUser of selectedAccessRight">{{SelValUser.name}}</li>
+                          </ul>
+                      </div>
+                    </ng-container>
                   
-                    </form>
-          <!-- <app-dp-multi></app-dp-multi> -->
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="AddAdmin(tenantForm.value.SelValT,tenantForm.value.SelValU,tenantForm.value.SelValUser)">Confirm</button>
+                  </div>
+                </mat-step>
+                </form>
+              </mat-step>
+            </mat-stepper>
         </div>
       </div>
       </div>

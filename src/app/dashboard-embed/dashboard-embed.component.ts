@@ -29,6 +29,6 @@ export class DashboardEmbedComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data:any) { }
 
   ngOnInit(): void {
-    console.log(this.token)
+   
   }
 }

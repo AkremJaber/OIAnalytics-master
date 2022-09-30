@@ -7,8 +7,7 @@
       <th scope="col">Identifier</th>
       <th scope="col">Access rights</th>
       <th scope="col">Principle type</th>
-
-
+      <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -19,8 +18,9 @@
       </td>
       <td>{{ grp.emailAddress}}</td>
       <td>{{ grp.identifier}}</td>
-      <td>{{ grp.groupUserAccessRight}}</td>
-      <td>{{ grp.principalType}}</td>
+      <td>{{ grp.groupUserAccessRight | json}}</td>
+      <td>{{ grp.principalType| json}}</td>
+      <td> <i (click)="deleteGrpUsr(grp.emailAddress)" class="bi bi-trash3-fill"></i>     <i (click)="modGrpUsr()" class="bi bi-pencil-square"></i> </td>
 
     </tr>
     </tbody>

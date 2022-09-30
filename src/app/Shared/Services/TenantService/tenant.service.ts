@@ -12,6 +12,8 @@ export class TenantService {
   
   
   readonly getTenant= 'https://localhost:44361/api/Tenants';
+  readonly delgrpusr= 'https://localhost:44361/api/Tenants/DeleteGroupUsers';
+
   readonly group="https://localhost:44361/api/Tenants/Admin";
   readonly updateGroup="https://localhost:44361/api/Tenants/UpdateTenantUserGroup";
 
@@ -50,7 +52,7 @@ export class TenantService {
   
 
   }
-  getDropDownTextTUser(name:any, object:any):any{
+  getDropDownTextAccRight(name:any, object:any):any{
     const selObjU = _.filter(object, function (o) {
         return ( _.includes(name,o.name));
         
@@ -63,10 +65,15 @@ export class TenantService {
             email: email,
             ccC_WorkspaceId: WorkspaceId
     }
-  
     return this.http.put(this.updateGroup,postAdmin)
+  }
 
-
+  deleteGrpUsr(WorkspaceId:any,email:any){
+    const postData ={
+      CCC_WorkspaceId: WorkspaceId,
+      email: email
+    }
+    return this.http.delete(this.delgrpusr,{params:postData})
   }
 
 }

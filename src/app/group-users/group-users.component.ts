@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GroupUsersService } from '../Shared/Services/groupUsers/group-users.service';
+import { TenantService } from '../Shared/Services/TenantService/tenant.service';
 
 @Component({
   selector: 'app-group-users',
@@ -9,7 +10,7 @@ import { GroupUsersService } from '../Shared/Services/groupUsers/group-users.ser
 })
 export class GroupUsersComponent implements OnInit {
 
-  constructor(public service:GroupUsersService,@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(public service:GroupUsersService,@Inject(MAT_DIALOG_DATA) public data: any,public tenantService:TenantService) { }
   public GrpUsr:any;
   ws:any=this.data.WSID
 
@@ -24,7 +25,18 @@ export class GroupUsersComponent implements OnInit {
         // }
       });
    }
+   deleteGrpUsr(email:any){
+    if(confirm('Are you sure you want to delete this user ?'))
+    {
+      this.tenantService.deleteGrpUsr(this.ws,email).subscribe()
+    }
+   }
+   
+   modGrpUsr(){
+    
 
+   }
+//window.location.reload();
   ngOnInit(): void {
     this.get()
     

@@ -15,6 +15,8 @@ import { GroupUsersComponent } from '../group-users/group-users.component';
 
 
 
+  
+
 
 @Component({
   selector: 'app-tenant-details',
@@ -25,7 +27,7 @@ export class TenantDetailsComponent implements OnInit {
 
  
 
-  constructor(public dashService:DashboardService,public RepService:ReportService,public service:TenantService,public dsService:DatasetService, public detailService:TenantDetailsService,private dialog:MatDialog) { }
+  constructor(public dashService:DashboardService,public RepService:ReportService,public service:TenantService,public dsService:DatasetService, public detailService:TenantDetailsService,private dialog:MatDialog) {  }
   public t:any;
   public TD:any
   public reports:any
@@ -134,10 +136,13 @@ export class TenantDetailsComponent implements OnInit {
       window.location.reload();
     }
    }
+
+  
    
   ngOnInit(): void {
     this.service.getTenants().subscribe();
     this.get();
+    
   }
   
 
