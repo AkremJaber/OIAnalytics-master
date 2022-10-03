@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
 import { Tenant } from '../../Models/Tenant/tenant.model';
@@ -59,6 +59,13 @@ export class TenantService {
     });
     return selObjU;
   }
+
+  getDropDownTextPrincipalType(name:any, object:any):any{
+    const selObjP= _.filter(object,function(o){
+      return(_.includes(name,o,name));
+    });
+    return selObjP;
+  }
   
   saveAdmin(WorkspaceId:any,email:any){
     const postAdmin = {
@@ -68,12 +75,25 @@ export class TenantService {
     return this.http.put(this.updateGroup,postAdmin)
   }
 
-  deleteGrpUsr(WorkspaceId:any,email:any){
-    const postData ={
-      CCC_WorkspaceId: WorkspaceId,
-      email: email
-    }
-    return this.http.delete(this.delgrpusr,{params:postData})
+  deleteGrpUsr(WorkspaceId:any,email:any):any{
+    
+    let hash:any= /#/gi
+    let mail:any= email.replace(hash,"|")
+
+    return this.http.delete(this.getTenant+'/'+WorkspaceId+'/'+mail,{responseType:'text'})
+    
   }
+
+  UpdateGroupUser(WorkspaceId:any,email:any,AccessRight:any,PrincipalType:any){
+    const postAdmin = {
+      ccC_WorkspaceId: WorkspaceId,
+      principleType: PrincipalType,
+      groupUserAccessRight:AccessRight ,
+      identifier:email
+}
+    return this.http.put(this.getTenant,postAdmin,{responseType:'text'})
+  }
+
+
 
 }

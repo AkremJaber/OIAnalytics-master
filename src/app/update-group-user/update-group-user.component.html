@@ -1,0 +1,40 @@
+<!-- <form class="example-form"> -->
+    <form class="example-form" #tenantForm="ngForm" (ngSubmit)="UpdateSelectedGroupUser(ws,mail,tenantForm.value.SelValU,tenantForm.value.SelValPrinc)">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email Address</mat-label>
+      <input matInput value={{mail}}>
+    </mat-form-field>
+<br>
+<mat-form-field appearance="fill">
+    <mat-label>Select Access Right</mat-label>  
+      <mat-select name="users" [(ngModel)]="mySelectAccessRight" (selectionChange)="selectChangeAccessRight()" > 
+        <mat-option [value]="varTest1.name" *ngFor="let varTest1 of AccessRights">{{varTest1.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <ng-container >
+      <div class="hide">
+          Selected :
+          <ul>
+              <li *ngFor="let SelValUser of selectedAccessRight">{{SelValUser.name}}</li>
+          </ul>
+      </div>
+    </ng-container>
+    <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Select Principal Type</mat-label>  
+          <mat-select name="users" [(ngModel)]="mySelectAccessRight" (selectionChange)="selectChangePrincipalType()" > 
+            <mat-option [value]="varTest1.name" *ngFor="let varTest1 of PrincipalType">{{varTest1.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <ng-container >
+          <div class="hide">
+              Selected :
+              <ul>
+                  <li *ngFor="let SelValPrinc of selectedPrincipalType">{{SelValPrinc.name}}</li>
+              </ul>
+          </div>
+        </ng-container>
+        <br>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>

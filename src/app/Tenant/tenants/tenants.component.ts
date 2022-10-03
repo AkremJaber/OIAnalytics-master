@@ -56,10 +56,10 @@ export class TenantsComponent implements OnInit {
       this.dashboards=res.dashboard
       this.datasets=res.datasets
       this.TD=res
-      console.log(this.TD)
-      console.log(this.reports)
-      console.log(this.dashboards)
-      console.log(this.datasets)
+      // console.log(this.TD)
+      // console.log(this.reports)
+      // console.log(this.dashboards)
+      // console.log(this.datasets)
 
     }
     );
@@ -87,7 +87,7 @@ export class TenantsComponent implements OnInit {
    selectedValueTenant:any;
    selectChangeTenant(){
        this.selectedValueTenant = this.service.getDropDownTextTenant(this.mySelectTenant,this.t);
-       console.log(this.mySelectTenant)
+       //console.log(this.mySelectTenant)
    }
 
    getAADUser():any{
@@ -101,7 +101,7 @@ export class TenantsComponent implements OnInit {
    selectedValueAADUser:any;
    selectChangeAADUser(){
   this.selectedValueAADUser = this.ADuserService.getDropDownTextAADUser(this.mySelectAADUser,this.u);
-  console.log(this.selectedValueAADUser)
+  //console.log(this.selectedValueAADUser)
   
    }
   //  userSelect=[];
@@ -114,7 +114,7 @@ export class TenantsComponent implements OnInit {
    selectedAccessRight:any;
    selectChangeAccessRight(){
   this.selectedAccessRight = this.service.getDropDownTextAccRight(this.mySelectAccessRight,this.AccessRights);
-  console.log(this.selectedAccessRight[0].name)
+  //console.log(this.selectedAccessRight[0].name)
   
    }
 
@@ -123,10 +123,10 @@ export class TenantsComponent implements OnInit {
    AddAdmin(x:any,list:any,AccRight:any){
     x=this.selectedValueTenant[0].ccC_WorkspaceId
     // y=this.userSelect
-    console.log(x)
+    //console.log(x)
     list=this.selectedValueAADUser
     AccRight=this.selectedAccessRight[0].name
-    console.log(list)
+    //console.log(list)
     var dict = []; // create an empty array
     for (let item of list) {
       dict.push({
@@ -134,7 +134,7 @@ export class TenantsComponent implements OnInit {
         accessRight: AccRight
 }) 
   }
-  console.log(dict)
+  //console.log(dict)
   this.ADuserService.UpdateListAADUser(x,dict,AccRight).subscribe((res)=>{
     console.warn(res)
   })
