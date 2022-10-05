@@ -21,7 +21,7 @@ export class UpdateGroupUserComponent implements OnInit {
     {name:"Group"},
     {name:"None"},
     {name:"User"}
-  ]
+  ];
 
   mail:any=this.data.email;
   ws:any=this.data.WSID;
@@ -34,15 +34,26 @@ export class UpdateGroupUserComponent implements OnInit {
    selectedAccessRight:any;
    selectChangeAccessRight(){
   this.selectedAccessRight = this.service.getDropDownTextAccRight(this.mySelectAccessRight,this.AccessRights);
+  //console.log(this.selectedAccessRight[0].name)
+
    }
 
    mySelectPrincipalType=[];
    selectedPrincipalType:any;
    selectChangePrincipalType(){
-    this.selectedPrincipalType=this.service.getDropDownTextPrincipalType(this.mySelectPrincipalType,this.PrincipalType);
+    this.selectedPrincipalType = this.service.getDropDownTextPrincipalType(this.mySelectPrincipalType,this.PrincipalType);
+    //console.log(this.selectedPrincipalType[0].name)
    }
 
    UpdateSelectedGroupUser(workspaceId:any,email:any,AccessRights:any,PrincipalType:any){
+    workspaceId=this.ws
+    email=this.mail
+    AccessRights=this.selectedAccessRight[0].name
+    PrincipalType=this.selectedPrincipalType[0].name
+    // console.log(workspaceId)
+    // console.log(email)
+    // console.log(AccessRights)
+    // console.log(PrincipalType)
     this.service.UpdateGroupUser(workspaceId,email,AccessRights,PrincipalType).subscribe()
    }
 
@@ -51,10 +62,6 @@ export class UpdateGroupUserComponent implements OnInit {
     //console.log(this.Access)
     console.log(this.mail)
     //console.log(this.Principal)
-
-
-
-
   }
 
 }

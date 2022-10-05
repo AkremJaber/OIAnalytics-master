@@ -18,8 +18,8 @@ export class GroupUsersComponent implements OnInit {
   get(){
     this.service.getGroupUsers(this.ws).subscribe((res:any)=>
       {
-        this.GrpUsr=res.value
-        //console.log(this.GrpUsr);
+        this.GrpUsr=res.userGroup
+        console.log(this.GrpUsr);
         // for (let item of this.t)
         // {
         //   this.listWSID.push({WSID:item.ccC_WorkspaceId})

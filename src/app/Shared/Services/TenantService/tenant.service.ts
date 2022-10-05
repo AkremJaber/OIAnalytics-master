@@ -62,7 +62,7 @@ export class TenantService {
 
   getDropDownTextPrincipalType(name:any, object:any):any{
     const selObjP= _.filter(object,function(o){
-      return(_.includes(name,o,name));
+      return(_.includes(name,o.name));
     });
     return selObjP;
   }
@@ -85,13 +85,16 @@ export class TenantService {
   }
 
   UpdateGroupUser(WorkspaceId:any,email:any,AccessRight:any,PrincipalType:any){
-    const postAdmin = {
-      ccC_WorkspaceId: WorkspaceId,
-      principleType: PrincipalType,
-      groupUserAccessRight:AccessRight ,
-      identifier:email
-}
-    return this.http.put(this.getTenant,postAdmin,{responseType:'text'})
+//     const postAdmin = {
+//       CCC_WorkspaceId: WorkspaceId,
+//       principleType: PrincipalType,
+//       groupUserAccessRight:AccessRight ,
+//       identifier:email
+// }
+    let hash:any= /#/gi
+    let mail:any= email.replace(hash,"|")
+
+    return this.http.put(this.getTenant+'/'+WorkspaceId+'/'+PrincipalType+'/'+AccessRight+'/'+mail,{responseType:'text'})
   }
 
 

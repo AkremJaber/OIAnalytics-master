@@ -23,7 +23,7 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Select Principal Type</mat-label>  
-          <mat-select name="users" [(ngModel)]="mySelectAccessRight" (selectionChange)="selectChangePrincipalType()" > 
+          <mat-select name="users" [(ngModel)]="mySelectPrincipalType" (selectionChange)="selectChangePrincipalType()" > 
             <mat-option [value]="varTest1.name" *ngFor="let varTest1 of PrincipalType">{{varTest1.name}}</mat-option>
           </mat-select>
         </mat-form-field>
