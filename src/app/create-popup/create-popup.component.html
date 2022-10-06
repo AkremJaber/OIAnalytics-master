@@ -1,54 +1,12 @@
-
-<!-- <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-  <mat-step >
-    <form class="example-form" #tenantForm="ngForm" >
-      <ng-template matStepLabel>Fill out your Workspace name</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>Workspace Name</mat-label>
-        <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Tenant 01" value="">
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-      </mat-step>
-      <mat-step >
-    <form >
-      <ng-template matStepLabel>Select which workspace the Dashboard will be created in</ng-template>
-      <mat-form-field appearance="fill">
-        
-        <mat-select name="my-selectt" [(ngModel)]="mySelectAADUser" (selectionChange)="selectChangeAADUser()" multiple="multiple" >
-                   
-          <mat-option [value]="itemt.uiD_Person" *ngFor="let itemt of t">
-              {{itemt.displayName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <ng-container >
-        <div>
-            Selected :
-            <ul>
-                <li *ngFor="let SelValT of selectedValueAADUser">{{SelValT.displayName}}</li>
-            </ul>
-        </div>
-      </ng-container>
-      <ng-template #elseTemplateT>
-        <div>
-            Selected:{{selectedValueAADUser}} 
-        </div>
-      </ng-template>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="CreateTenantDictAADUser(tenantForm.value.SelValT,tenantForm.value.e)">Confirm</button>
-      </div>
-    </form>
-  </mat-step>
-  
-</mat-stepper> -->
-
-
-
 <h2> Create Workspace</h2>
+<div *ngIf="error" class="alert alert-success alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Error ! </strong> .
+</div>
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Success ! </strong> Dashboard created successfully.
+</div>
             <form class="example-form" #tenantForm="ngForm" (ngSubmit)="CreateTenantDictAADUser(tenantForm.value.SelValT,tenantForm.value.e)">
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Workspace Name</mat-label>

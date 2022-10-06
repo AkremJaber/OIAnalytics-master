@@ -34,7 +34,7 @@ export class DashboardService {
       ccC_WorkspaceId: CCC_WorkspaceId,
       name: DashName
 }
-return this.http.post(this.Dash,postData)
+return this.http.post(this.Dash,postData,{responseType:'text'})
   }
 
   DelDash(workspaceId:string,dashID:string){
@@ -42,7 +42,7 @@ return this.http.post(this.Dash,postData)
       ccC_WorkspaceId: workspaceId,
       DashboardId: dashID
 }
-    return this.http.delete(this.Dash,{params:postData})
+    return this.http.delete(this.Dash,{params:postData,responseType:'text'})
   }
 
 }

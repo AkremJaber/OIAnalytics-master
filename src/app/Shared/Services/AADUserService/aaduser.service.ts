@@ -22,12 +22,10 @@ export class AaduserService {
   getDropDownTextAADUser(uiD_Person:any, object:any):any{
     const selObjT = _.filter(object, function (o) {
         return ( _.includes(uiD_Person,o.uiD_Person));
-        
     });
-    
     return selObjT; 
-
   }
+  
   CreateListAADUser(name:any,adUser:any)
   {
     const httpOptions = {

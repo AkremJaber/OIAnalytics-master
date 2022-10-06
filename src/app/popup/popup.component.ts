@@ -14,11 +14,21 @@ export class PopupComponent implements OnInit {
   e:string
   ws:any=this.data.WSID
   rep:any=this.data.repID
+  alert:boolean=false
+  error:boolean=false
   
   
   CloneReport(){
-    this.service.cloneReport(this.e,this.ws,this.rep).subscribe()
-    window.location.reload();
+    this.service.cloneReport(this.e,this.ws,this.rep).subscribe((res:any)=>
+    {
+      if (res=null) {
+        this.error=true
+      }
+      else
+      this.alert=true
+
+    })
+    //window.location.reload();
   }
   
 

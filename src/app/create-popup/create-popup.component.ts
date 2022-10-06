@@ -17,6 +17,8 @@ export class CreatePopupComponent implements OnInit {
   public t:any;
   e:string
   isLinear = false;
+  alert:boolean=false
+  error:boolean=false
 
   onTenantCreate(){
     this.service.createTenant(this.e).subscribe()
@@ -34,7 +36,7 @@ export class CreatePopupComponent implements OnInit {
    selectedValueAADUser:any;
    selectChangeAADUser(){
   this.selectedValueAADUser = this.ADuserService.getDropDownTextAADUser(this.mySelectAADUser,this.t);
-  console.log(this.selectedValueAADUser)
+  //console.log(this.selectedValueAADUser)
   
    }
   //  CreateTenantListAADUser(name:any,list:any){
@@ -49,7 +51,7 @@ export class CreatePopupComponent implements OnInit {
   CreateTenantDictAADUser(name:any,list:any){
     name=this.e
     list=this.selectedValueAADUser
-    console.log(this.e)
+    //console.log(this.e)
     var dict = []; // create an empty array
     for (let item of list) {
       dict.push({
@@ -57,7 +59,7 @@ export class CreatePopupComponent implements OnInit {
         accessRight: 'Admin'
 }) 
   }
-  console.log(dict)
+  //console.log(dict)
     this.ADuserService.CreateListAADUser(name,dict).subscribe()
     window.location.reload();
    }

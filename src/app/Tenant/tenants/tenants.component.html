@@ -1,8 +1,16 @@
 <div class="jumbotron py-3">
     <h1 class="display-4 text-center">Workspaces</h1>
 </div>
-<br>
 
+<div *ngIf="error" class="alert alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Error ! </strong> .
+</div>
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Success ! </strong> Dashboard deleted successfully.
+</div>
+<br>
 <div class="u-tabs u-tabs-1">
    
   <ul class="u-tab-list u-unstyled" role="tablist">

@@ -1,3 +1,19 @@
+<div *ngIf="error" class="alert alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Error ! </strong> .
+</div>
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Success ! </strong> Dashboard deleted successfully.
+</div>
+<div *ngIf="Reporterror" class="alert alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Error ! </strong> .
+</div>
+<div *ngIf="Reportalert" class="alert alert-success alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Success ! </strong> Report deleted successfully.
+</div>
 <mat-accordion class="example-headers-align">
     <mat-expansion-panel class="overflow-init" hideToggle (click)="tenantDetails(pd.ccC_WorkspaceId)" *ngFor="let pd of t">
       <mat-expansion-panel-header class="panel-header">
@@ -74,52 +90,7 @@
   <div class="create">
   <button  mat-stroked-button color="primary" (click)="openCreateDialog()">Create Workspace</button>
   </div>
-  
-  
-  <!-- <script>
 
-    // Get a reference to the embedded report HTML element
-    const reportContainer = $('#embedContainer')[0];
-
-    // Read embed application token from Model
-    const accessToken = "H4sIAAAAAAAEAB2Uxa7DRgBF_-VtXSmOOZW6MMXM7J1pxpSYseq_97X7s7i69PePnV39kJU_f_7AhdnytPPdU3lNO_QfBqzNMOy4CzWxbKHFrww_XcmQEl1gotvzUTN8eomRgd8ULCGh4050idG-_XI5AwUvp0D2gxqxQ39JaEZfS2N_4zb57hu1WyXC6vu5o7kpHZhRNCzbo2bb0kUPw9KH3TtuDcsuLWW9sRZdb2z6-EjaTQmBaK5OuqxAx84Zume-O1OvC-FxP3WADsp55aU9vefdFyq5hTd5zbZ5kSWRIT2HhPkldG5JHw-etoPEXvGDNAbLN_QEBdyL2a6zkpBOZzmcVl90Von1pjEkgVbju3DjkwnPqsU7mS_jb1HyYUNK7ElCWSekjiDiBKVFCqpl6Nrp7lIzVgzuGFsun0A5JgDcsjOxe3SSuFNUCMvYBYH-Jl7NU9AAFb-b3bon8FnwOUwuZiam2hjoCq9N-bGox1VaFRlG5GcvQj8BW7ZhxtMzJ5w4bkZmP_FqDgsJP_s7vttaMn-1Rg0_ap58y4mgmaOTdqAUPATvAgInaavZRx1aksTvca3tB1tlx6nShJyNHS26hx_k-DqHJ6_JRZEr8TMzHat5vily4CXwAa9A5oPPY0BNoBqc2g6TVvnmJ9gb0i94n77OFxGkQpziVNcId2BteAPWOdlbXd7nl6EHLnct_VMPU9SAzsubcS6JEZesr1eOWczdeTGn7RaFpWRmiNg2SKtwdjNjSKnUD1ibbLgufF49bl1mzDujQhyAM9ffKAoJx0zwgKysMJ5CUJFqa4QTIXaFkID46-ePH36-xnXQquu3-rOWoU6qZpJkE1GHpDOS5V3MPyKJBVaaQKCfcoJNMgq_slk7quFmPoHYzktCiJLVEUFBbiFuj9HcntcF5rEpbWIKYynXlXxjshUcWYgwqCqqjNlrZ3Y9DVxukSXqC20okm4orzaR4UNaKDII6fD8Ooc8TmkptIPIEVViOTwXdbUZXNUnElpVqYGgGy5m4Vrmxy9MLqlXGOfag6wkyQdHxTyINzmJOeOvpAhz96vALYFRZDsH-0YbBXvtkiD7KKLIl8I-e84rP0zZgoZ9HzK-ivqNG6oQe2yaPnEv7-vHXb9hxhfk97d-jcPU_vaNbkk3suW9xJ8O5UJqf253PHfnuErYh_3rf5uvsa5mJfzvYLQS4TXlEnuOTwBGDdhjf8H_Ka-B32zd5uoXEzuybpZGm8wKkHkhTkhPqdogB4621sObrfZ2MBMJt2uiBe63HAZZzfX6cfonSjLBfTKgiI-Pl1F-nbyeEQvWU6w1N_ikCR5y7DI2YZaz0pe6j_WrE-EuA6AWcZjXYSpsTNuWAXcuhYpfVqDoq-lU5BzBhAkgqvvX5qKj7OwaNvGVDrO-80bY3tP9xUHa8C-tL8UHr76fAyf6XLUMX--ogX2A9lBHOhFTNAx61rUi9YhvxdQIIzN5_DQXy64P6oH4A6GrRNZK2xYE0CPliawxgLmab_n97xifoYtgopTBEBf0AsBp2Z8OeQ6Xo2pNgVD1m0oiSmLjRmb0b9ISXedjO3B-bf7nX0fGrk_uBQAA.eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLU5PUlRILUVVUk9QRS1RLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7Im1vZGVybkVtYmVkIjpmYWxzZX19";
-
-    // You can embed different reports as per your need by changing the index
-    // Read embed URL from Model
-    const embedUrl = "https://app.powerbi.com/reportEmbed?reportId=a14584d9-a196-404c-8725-ee2f091e3a2a&groupId=ddbb5f1e-e715-426f-8888-793c4359f0c2&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLU5PUlRILUVVUk9QRS1RLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7Im1vZGVybkVtYmVkIjp0cnVlLCJ1c2FnZU1ldHJpY3NWTmV4dCI6dHJ1ZSwic2tpcFF1ZXJ5RGF0YVNhYVNFbWJlZCI6dHJ1ZSwic2tpcFF1ZXJ5RGF0YVBhYVNFbWJlZCI6dHJ1ZSwic2tpcFF1ZXJ5RGF0YUV4cG9ydFRvIjp0cnVlfX0%3d";
-
-    // Read report Id from Model
-    const embedReportId = "a14584d9-a196-404c-8725-ee2f091e3a2a";
-
-    // Use the token expiry to regenerate Embed token for seamless end user experience
-    // Refer https://aka.ms/RefreshEmbedToken
-    
-
-    // Get models. models contains enums that can be used.
-    const models = window['powerbi-client'].models;
-
-    // Embed configuration used to describe the what and how to embed.
-    // This object is used when calling powerbi.embed.
-    // This also includes settings and options such as filters.
-    // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
-    const config = {
-        type: 'report',
-        tokenType: models.TokenType.Embed,
-        accessToken: accessToken,
-        embedUrl: embedUrl,
-        id: embedReportId,
-        permissions: models.Permissions.All,
-        settings: {
-            // Enable this setting to remove gray shoulders from embedded report
-            // background: models.BackgroundType.Transparent,
-            filterPaneEnabled: true,
-            navContentPaneEnabled: true
-        }
-    };
-
-    // Embed the report and display it within the div container.
-    const report = powerbi.embed(reportContainer, config);
-</script> -->
 
 
 

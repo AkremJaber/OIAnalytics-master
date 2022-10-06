@@ -4,6 +4,7 @@ import { DashboardService } from '../Shared/Services/DashboardService/dashboard.
 import { TenantDetailsService } from '../Shared/Services/TenantDetails/tenant-details.service';
 import { TenantService } from '../Shared/Services/TenantService/tenant.service';
 
+
 @Component({
   selector: 'app-dashboards',
   templateUrl: './dashboards.component.html',
@@ -11,7 +12,7 @@ import { TenantService } from '../Shared/Services/TenantService/tenant.service';
 })
 export class DashboardsComponent implements OnInit {
 
-
+  
   constructor(public service:TenantService,public dashService:DashboardService,private _formBuilder: FormBuilder) { }
   public t:any;
   
@@ -20,9 +21,9 @@ export class DashboardsComponent implements OnInit {
   public dashboardList:any
   e:string
   alert:boolean=false
+  error:boolean=false
 
-
-
+  
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -54,8 +55,16 @@ export class DashboardsComponent implements OnInit {
     name=this.e
     ccC_WorkspaceId=this.selectedValueTenant[0].ccC_WorkspaceId
     
-    this.dashService.CreateDashboard(name,ccC_WorkspaceId).subscribe()
-    window.location.reload();
+    this.dashService.CreateDashboard(name,ccC_WorkspaceId).subscribe((res:any)=>{
+      if (res=null) {
+        this.error=true
+      }
+      else
+      this.alert=true
+    });
+    
+
+    //window.location.reload();
     //this.alert=true
     
    }

@@ -37,6 +37,11 @@ export class TenantDetailsComponent implements OnInit {
   public Token:any
   public dashEmbedUrl:any
   public dashToken:any
+  alert:boolean=false
+  error:boolean=false
+  Reportalert:boolean=false
+  Reporterror:boolean=false
+
 
   get(){
     this.service.getTenants().subscribe((res: any)=>
@@ -71,8 +76,16 @@ export class TenantDetailsComponent implements OnInit {
    DeleteDash(ccC_WorkspaceId:string ,dashId:string){
     if(confirm('Are you sure you want to delete this dashboard ?'))
     {
-    this.dashService.DelDash(ccC_WorkspaceId,dashId).subscribe()
-    window.location.reload();
+    this.dashService.DelDash(ccC_WorkspaceId,dashId).subscribe((res:any)=>
+    {
+      if (res=null) {
+        this.error=true
+      }
+      else
+      this.alert=true
+
+    })
+    //window.location.reload();
 
    }
   }
@@ -104,8 +117,15 @@ export class TenantDetailsComponent implements OnInit {
     console.log(ccC_WorkspaceId,reportId)
     if(confirm('Are you sure you want to delete this report ?'))
     {
-    this.detailService.deleteReport(ccC_WorkspaceId,reportId).subscribe()
-    window.location.reload();
+    this.detailService.deleteReport(ccC_WorkspaceId,reportId).subscribe((res:any)=>
+    {
+      if (res=null) {
+        this.Reporterror=true
+      }
+      else
+      this.Reportalert=true
+    })
+    //window.location.reload();
     }
   }
 

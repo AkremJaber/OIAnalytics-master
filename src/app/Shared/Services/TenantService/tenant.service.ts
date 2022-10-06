@@ -96,7 +96,4 @@ export class TenantService {
 
     return this.http.put(this.getTenant+'/'+WorkspaceId+'/'+PrincipalType+'/'+AccessRight+'/'+mail,{responseType:'text'})
   }
-
-
-
 }

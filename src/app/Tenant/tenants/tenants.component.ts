@@ -45,6 +45,8 @@ export class TenantsComponent implements OnInit {
   public dashboards:any
   public datasets:any
   isLinear = false;
+  alert:boolean=false
+  error:boolean=false
 
 
 
@@ -78,8 +80,16 @@ export class TenantsComponent implements OnInit {
   deleteTenant(id:any){
     if(confirm('Are you sure you want to delete this tenant ?'))
     {
-    this.service.deleteTenant(id).subscribe()
-    window.location.reload();
+    this.service.deleteTenant(id).subscribe((res:any)=>
+    {
+      if (res=null) {
+        this.error=true
+      }
+      else
+      this.alert=true
+
+    })
+    //window.location.reload();
     }
   }
 
@@ -138,7 +148,7 @@ export class TenantsComponent implements OnInit {
   this.ADuserService.UpdateListAADUser(x,dict,AccRight).subscribe((res)=>{
     console.warn(res)
   })
-  window.location.reload();
+  //window.location.reload();
     // this.service.saveAdmin(x,y).subscribe((res)=>{
     //   console.warn(res)
     // }) 

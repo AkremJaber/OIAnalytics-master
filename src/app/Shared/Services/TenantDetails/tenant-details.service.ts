@@ -35,7 +35,7 @@ export class TenantDetailsService {
     //   ccC_WorkspaceId :workspaceId,
     //   reportId:reportID
     // }
-    return this.http.delete(this.delReport+'/'+workspaceId+'/'+reportID)
+    return this.http.delete(this.delReport+'/'+workspaceId+'/'+reportID,{responseType:'text'})
   }
 
   cloneReport(namee:any,workspaceId:any, reportID:any){
