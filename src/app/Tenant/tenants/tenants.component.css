@@ -69,4 +69,34 @@ table {
       .hide{
         display: none;
       }
-     
+     .u-container-layout-8{
+      background-color:  rgba(234, 234, 234, 0.808);
+      
+     }
+     .u-tab-item{
+      background-color:  rgba(234, 234, 234, 0.808);
+     }
+     #WS{
+      color: #4949499c;
+      margin-left: 30px;
+      margin-top: 50px;
+     }
+
+     .u-tabs-1{
+      background-color: rgba(234, 234, 234, 0.808);
+  }
+  .u-container-layout-10{
+    background-color:  rgba(234, 234, 234, 0.808);
+  }
+  .title{
+    color: #4949499c;
+  }
+  li:hover {
+    cursor: pointer;
+}
+.u-tab-link-1 {
+  text-decoration: none;
+}
+.u-tab-link-3{
+  text-decoration: none;
+}

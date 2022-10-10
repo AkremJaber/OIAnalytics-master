@@ -14,6 +14,7 @@
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong>Success ! </strong> Report deleted successfully.
 </div>
+
 <mat-accordion class="example-headers-align">
     <mat-expansion-panel class="overflow-init" hideToggle (click)="tenantDetails(pd.ccC_WorkspaceId)" *ngFor="let pd of t">
       <mat-expansion-panel-header class="panel-header">
@@ -28,7 +29,9 @@
           
         </mat-panel-title>
       </mat-expansion-panel-header>
+      <mat-expansion-panel-content class="content"></mat-expansion-panel-content>
     <mat-expansion-body class="mat-body">
+      
         <div class="rep-class">
     <div class="ic-rep">
         <img class="img" src="../../assets/Report.svg" />
@@ -45,7 +48,8 @@
               <a (click)="EditReport(pd.ccC_WorkspaceId,r.id)">Edit</a>
               <a href="#">Export</a>
               <a (click)="openCloneDialog(pd.ccC_WorkspaceId,r.id)" >Clone</a>
-              <a (click)="delReport(pd.ccC_WorkspaceId,r.id)">Delete</a>
+              <br>
+              <a id="drop-del" (click)="delReport(pd.ccC_WorkspaceId,r.id)">Delete</a>
             </div>
           </div> 
 
@@ -62,8 +66,8 @@
             <button class="dropbtn"><i class="bi bi-three-dots"></i></button>
             <div class="dropdown-content">
               <a (click)="ViewDashboard(pd.ccC_WorkspaceId,d.id)">View</a>
-              <a (click)="DeleteDash(pd.ccC_WorkspaceId,d.id)">Delete</a>
-              
+              <br>
+              <a id="drop-del" (click)="DeleteDash(pd.ccC_WorkspaceId,d.id)">Delete</a>
               
             </div>
           </div>
@@ -79,7 +83,7 @@
         <div class="dropdown">
             <button class="dropbtn"><i class="bi bi-three-dots"></i></button>
             <div class="dropdown-content">
-              <a (click)="deleteDataset(pd.ccC_WorkspaceId,ds.id)">Delete</a>              
+              <a id="drop-del" (click)="deleteDataset(pd.ccC_WorkspaceId,ds.id)">Delete</a>              
             </div>
           </div>
         </div>
@@ -87,8 +91,9 @@
     </mat-expansion-body>
     </mat-expansion-panel>
   </mat-accordion>
+  <br>
   <div class="create">
-  <button  mat-stroked-button color="primary" (click)="openCreateDialog()">Create Workspace</button>
+  <button  mat-stroked-button (click)="openCreateDialog()">Create Workspace</button>
   </div>
 
 

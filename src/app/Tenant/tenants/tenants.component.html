@@ -1,7 +1,7 @@
-<div class="jumbotron py-3">
+<!-- <div class="jumbotron py-3">
     <h1 class="display-4 text-center">Workspaces</h1>
-</div>
-
+</div> -->
+<h2 id="WS">Workspaces</h2>
 <div *ngIf="error" class="alert alert-danger">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong>Error ! </strong> .
@@ -16,7 +16,7 @@
   <ul class="u-tab-list u-unstyled" role="tablist">
     
       <li class="u-tab-item" role="presentation">
-        <a class="active u-active-white u-button-style u-tab-link u-tab-link-1" id="link-tab-0da5" href="#tab-0da5" role="tab" aria-controls="tab-0da5" aria-selected="true">Workspaces</a>
+        <a class="active u-active-white u-button-style u-tab-link u-tab-link-1" id="link-tab-0da5" href="#tab-0da5" role="tab" aria-controls="tab-0da5" aria-selected="false">Workspaces</a>
       </li>
       
       <li class="u-tab-item" role="presentation">
@@ -27,14 +27,13 @@
 
     <div class="u-tab-content">
       <div class="u-align-left u-container-style u-tab-active u-tab-pane u-white u-tab-pane-1" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
-        <div class="u-container-layout u-container-layout-8">
+        <div class="u-container-layout u-container-layout-8" >
             <div class="col-md-6">
               
               <app-tenant-details></app-tenant-details>
 
             </div>
         </div>
-        <!-- <app-tenants-has-persons></app-tenants-has-persons> -->
       </div>
       
       
@@ -44,7 +43,7 @@
 
            
             
-            <h2>Assign workspace to users:</h2>
+            <h2 class="title">Assign workspace to users:</h2>
             
             <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
               <mat-step >
@@ -72,14 +71,14 @@
                     </div>
                   </ng-template>
                   <div>
-                    <button mat-button matStepperNext>Next</button>
+                    <button style="color: #05aadb" mat-button matStepperNext>Next</button>
                   </div>
                 </form>
 
               </mat-step>
               <mat-step >
                 <form >
-                  <ng-template matStepLabel>Select which users will be assigned to the selected workspace</ng-template>
+                  <ng-template class="label" matStepLabel>Select which users will be assigned to the selected workspace</ng-template>
                   <mat-form-field appearance="fill">
                     <mat-label>Select an option</mat-label>
                     <mat-select name="my-selectt" [(ngModel)]="mySelectAADUser" (selectionChange)="selectChangeAADUser()" multiple="multiple" >
@@ -102,6 +101,9 @@
                           Selected:{{selectedValueAADUser}} 
                       </div>
                     </ng-template>
+                    <div>
+                      <button style="color: #05aadb" mat-button matStepperNext>Next</button>
+                    </div>
                     <mat-step >
                       <ng-template matStepLabel>Select which permission </ng-template>
                   <mat-form-field appearance="fill">
@@ -120,8 +122,8 @@
                     </ng-container>
                   
                   <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="AddAdmin(tenantForm.value.SelValT,tenantForm.value.SelValU,tenantForm.value.SelValUser)">Confirm</button>
+                    <button mat-button matStepperPrevious>Previous</button>
+                    <button style="color: #05aadb"  mat-button (click)="AddAdmin(tenantForm.value.SelValT,tenantForm.value.SelValU,tenantForm.value.SelValUser)">Confirm</button>
                   </div>
                 </mat-step>
                 </form>

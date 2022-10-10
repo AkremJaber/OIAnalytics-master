@@ -193,8 +193,9 @@ nav:hover .shrink-btn,
 
 .sidebar-links a.active,
 .sidebar-links a:hover {
-  color: rgb(0, 122, 179);
+  color: #05aadb;
 }
+
 
 .sidebar-links a .link {
   transition: opacity 0.3s 0.2s, color 0.3s;
@@ -392,4 +393,7 @@ body.shrink .tooltip {
   height: 20px !important;
   margin-left: 20px;
  
+}
+.analytics{
+  color: #4949499c;
 }

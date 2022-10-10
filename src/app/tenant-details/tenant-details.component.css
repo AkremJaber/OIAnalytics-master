@@ -4,7 +4,9 @@
     max-width: 100%;
     
   }
-  
+  .mat-expansion-panel-content{
+    background-color: black;
+  }
   
   .example-headers-align .mat-form-field + .mat-form-field {
     margin-left: 8px;
@@ -121,15 +123,32 @@
   .dropdown:hover .dropbtn {background-color: #ffffff;}
 
   .create{
-    margin-left: 550px;
-    
+    margin-left: 700px;
+    background-color: #05aadb;
+    border-radius: 5px;
+   
   }
 
 .del-icon{
   margin-left: auto;
   font-size: x-large;
+  
+}
+.bi-trash3-fill{
+  color: rgba(255, 0, 0, 0.655);
 }
 
 .overflow-init {
   overflow: initial;
+}
+
+.u-container-layout .u-container-layout-8{
+  background-color: aqua;
+}
+
+#drop-del{
+  color: rgba(255, 0, 0, 0.655);
+}
+.dropdown:hover{
+  cursor: pointer;
 }
