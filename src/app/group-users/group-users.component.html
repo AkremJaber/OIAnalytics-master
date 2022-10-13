@@ -1,3 +1,13 @@
+<div *ngIf="error" class="alert alert-warning">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Error ! </strong> 
+</div>
+
+<div *ngIf="alert" class="alert alert-success alert-dismissible fade show">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Success ! </strong> User unassigned successfully.
+</div>
+<br>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -18,7 +28,7 @@
       <td>{{ grp.emailAddress}}</td>
       <td>{{ grp.groupUserAccessRight }}</td>
       <td>{{ grp.principalType}}</td>
-      <td> <i (click)="deleteGrpUsr(grp.emailAddress)" class="bi bi-trash3-fill"></i>     <i (click)="modGrpUsr(grp.emailAddress,grp.groupUserAccessRight,grp.principalType)" class="bi bi-pencil-square"></i> </td>
+      <td> <i (click)="deleteGrpUsr(grp.emailAddress)" class="bi bi-trash3-fill"></i><i (click)="modGrpUsr(grp.emailAddress,grp.groupUserAccessRight,grp.principalType)" class="bi bi-pencil-square"></i> </td>
 
     </tr>
     </tbody>

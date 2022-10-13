@@ -1,6 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TenantDetails } from 'src/app/Shared/Models/TenantDetails/tenant-details.model';
 import { AaduserService } from 'src/app/Shared/Services/AADUserService/aaduser.service';
 import { TenantDetailsService } from 'src/app/Shared/Services/TenantDetails/tenant-details.service';
@@ -24,9 +26,26 @@ import { TenantService } from 'src/app/Shared/Services/TenantService/tenant.serv
         })),
         transition('* <=> *', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
     ])
+],
+providers: [
+  {
+    provide: STEPPER_GLOBAL_OPTIONS,
+    useValue: {showError: true},
+  },
 ]
+
 })
 export class TenantsComponent implements OnInit {
+
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
+  thirdFormGroup = this._formBuilder.group({
+    thirdCtrl: ['', Validators.required],
+  });
 
    AccessRights = [
     { name: "Member" },
@@ -35,7 +54,7 @@ export class TenantsComponent implements OnInit {
     { name: "Contributor" }
   ];
 
-  constructor(public service:TenantService,public detailService:TenantDetailsService,public ADuserService:AaduserService) { }
+  constructor(private _formBuilder: FormBuilder,public service:TenantService,public detailService:TenantDetailsService,public ADuserService:AaduserService) { }
   public t:any;
   public u:any;
 
@@ -58,20 +77,12 @@ export class TenantsComponent implements OnInit {
       this.dashboards=res.dashboard
       this.datasets=res.datasets
       this.TD=res
-      // console.log(this.TD)
-      // console.log(this.reports)
-      // console.log(this.dashboards)
-      // console.log(this.datasets)
-
-    }
-    );
-    
+    });
    }
 
   get():any{
     this.service.getTenants().subscribe((res: any)=>
       {
-       //this.perso = res
         this.t=res
       }
       );
@@ -87,9 +98,7 @@ export class TenantsComponent implements OnInit {
       }
       else
       this.alert=true
-
     })
-    //window.location.reload();
     }
   }
 
@@ -111,49 +120,46 @@ export class TenantsComponent implements OnInit {
    selectedValueAADUser:any;
    selectChangeAADUser(){
   this.selectedValueAADUser = this.ADuserService.getDropDownTextAADUser(this.mySelectAADUser,this.u);
-  //console.log(this.selectedValueAADUser)
-  
    }
-  //  userSelect=[];
-  //  selectedValueUser:any
-  //  selectChangeUser(){
-  //   this.selectedValueUser=this.service.getDropDownTextTAccRight(this.userSelect,this.AccessRights);
-  //  }
 
    mySelectAccessRight = [];
    selectedAccessRight:any;
    selectChangeAccessRight(){
   this.selectedAccessRight = this.service.getDropDownTextAccRight(this.mySelectAccessRight,this.AccessRights);
-  //console.log(this.selectedAccessRight[0].name)
-  
    }
-
- 
 
    AddAdmin(x:any,list:any,AccRight:any){
     x=this.selectedValueTenant[0].ccC_WorkspaceId
-    // y=this.userSelect
-    //console.log(x)
     list=this.selectedValueAADUser
     AccRight=this.selectedAccessRight[0].name
-    //console.log(list)
+
     var dict = []; // create an empty array
     for (let item of list) {
       dict.push({
         UID_Person:item.uiD_Person,
         accessRight: AccRight
-}) 
-  }
-  //console.log(dict)
-  this.ADuserService.UpdateListAADUser(x,dict,AccRight).subscribe((res)=>{
-    console.warn(res)
-  })
-  //window.location.reload();
+        }) 
+        }
+
+      this.ADuserService.UpdateListAADUser(x,dict,AccRight).subscribe((res:any)=>{console.log(res.TypeError)},
+      (err:HttpErrorResponse)=>
+      {
+      if (err instanceof HttpErrorResponse ) 
+      {console.log("ffffffffff1")
+      this.error=true}
+      else
+      {
+        this.alert=true}}
+      );
+    //window.location.reload();
     // this.service.saveAdmin(x,y).subscribe((res)=>{
     //   console.warn(res)
     // }) 
+    
+    console.log(this.alert)
+    console.log(this.error)
+
    }
-  
 
   ngOnInit(): void {
     this.service.getTenants().subscribe();

@@ -100,3 +100,9 @@ table {
 .u-tab-link-3{
   text-decoration: none;
 }
+.active{
+  font-size: x-large;
+}
+.step{
+  background-color: rgba(234, 234, 234, 0.808);;
+}

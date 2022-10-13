@@ -31,7 +31,7 @@ export class TenantService {
   }
 
   deleteTenant(id:any){
-    return this.http.delete(this.getTenant+'/'+id)
+    return this.http.delete(this.getTenant+'/'+id,{responseType:'text'})
   }
 
   createTenant(ccc_Name:string){
@@ -84,7 +84,7 @@ export class TenantService {
     
   }
 
-  UpdateGroupUser(WorkspaceId:any,email:any,AccessRight:any,PrincipalType:any){
+  UpdateGroupUser(WorkspaceId:string,email:string,AccessRight:string,PrincipalType:string):any{
 //     const postAdmin = {
 //       CCC_WorkspaceId: WorkspaceId,
 //       principleType: PrincipalType,
@@ -93,7 +93,13 @@ export class TenantService {
 // }
     let hash:any= /#/gi
     let mail:any= email.replace(hash,"|")
+    var options = {
+      headers: new HttpHeaders({
+         'Accept':'text/plain'
+      }),
+      'responseType': 'text' as 'json'
+   }
 
-    return this.http.put(this.getTenant+'/'+WorkspaceId+'/'+PrincipalType+'/'+AccessRight+'/'+mail,{responseType:'text'})
+    return this.http.put(this.getTenant+'/'+WorkspaceId+'/'+PrincipalType+'/'+AccessRight+'/'+mail,{responseType:'text'},options)
   }
 }

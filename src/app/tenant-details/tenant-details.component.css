@@ -152,3 +152,6 @@
 .dropdown:hover{
   cursor: pointer;
 }
+#clone-btn{
+  margin-bottom: 7px;
+}

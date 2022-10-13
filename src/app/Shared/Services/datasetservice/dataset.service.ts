@@ -12,6 +12,6 @@ export class DatasetService {
 
 
   deleteDataset(CCC_WorkspaceId:any,DataSetId:any){
-    return this.http.delete(this.dataset+'/'+CCC_WorkspaceId+'/'+DataSetId)
+    return this.http.delete(this.dataset+'/'+CCC_WorkspaceId+'/'+DataSetId,{responseType:'text'})
   }
 }

@@ -1,35 +1,41 @@
 
-  <h2 class="dash" >Dashboards</h2>
+  <h2 class="dash" >Create Dashboards</h2>
   <br>
 
-<div *ngIf="error" class="alert alert-success alert-dismissible fade show">
+<!-- <div *ngIf="error" class="alert alert-success alert-dismissible fade show">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong>Error ! </strong> .
-</div>
-<div *ngIf="alert" class="alert alert-success alert-dismissible fade show">
+</div> -->
+<!-- <div *ngIf="alert" class="alert alert-success alert-dismissible fade show">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong>Success ! </strong> Dashboard created successfully.
-</div>
+</div> -->
 
-<mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-  <mat-step >
-    <form class="example-form" #tenantForm="ngForm">
+<app-alert-modal [alert]="alert" *ngIf="alert"></app-alert-modal>
+
+<app-error-modal [error]="error" *ngIf="error"></app-error-modal>
+<div>
+<mat-stepper class="step" orientation="vertical" linear="true" [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required." >
+
+    <form class="example-form" #tenantForm="ngForm" [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Fill out your Dashboard name</ng-template>
       <mat-form-field class="mat-form" appearance="fill">
         <mat-label>Dashboard Name</mat-label>
-        <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Dashboard 01" value="">
+        <input [(ngModel)]="e" name="tName" matInput placeholder="Ex. Dashboard 01" formControlName="firstCtrl" required>
       </mat-form-field>
       <div>
         <button style="color: #05aadb" mat-button matStepperNext>Next</button>
       </div>
     </form>
+
   </mat-step>
-  <mat-step>
-    <form>
+  <mat-step [stepControl]="secondFormGroup" errorMessage="Workspace is required.">
+    <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Select which workspace the Dashboard will be created in</ng-template>
       <mat-form-field  appearance="fill">
         
-        <mat-select name="my-selectt" [(ngModel)]="mySelectTenant" (selectionChange)="selectChangeTenant()">
+        <mat-select name="my-selectt" [(ngModel)]="mySelectTenant" (selectionChange)="selectChangeTenant()" formControlName="secondCtrl" required>
           <mat-option [value]="itemt.ccC_WorkspaceId" *ngFor="let itemt of t">
               {{itemt.ccC_Name}}
           </mat-option>
@@ -43,5 +49,6 @@
   </mat-step>
   
 </mat-stepper>
+</div>
 
 

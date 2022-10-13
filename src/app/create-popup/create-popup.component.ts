@@ -1,5 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Dictionary, forEach } from 'lodash';
+import { Dictionary, forEach, isEmpty, isError } from 'lodash';
 import { AaduserService } from '../Shared/Services/AADUserService/aaduser.service';
 import { TenantService } from '../Shared/Services/TenantService/tenant.service';
 
@@ -18,7 +19,7 @@ export class CreatePopupComponent implements OnInit {
   e:string
   isLinear = false;
   alert:boolean=false
-  error:boolean=false
+  err:boolean=false
 
   onTenantCreate(){
     this.service.createTenant(this.e).subscribe()
@@ -37,7 +38,6 @@ export class CreatePopupComponent implements OnInit {
    selectChangeAADUser(){
   this.selectedValueAADUser = this.ADuserService.getDropDownTextAADUser(this.mySelectAADUser,this.t);
   //console.log(this.selectedValueAADUser)
-  
    }
   //  CreateTenantListAADUser(name:any,list:any){
   //   name=this.e
@@ -51,17 +51,28 @@ export class CreatePopupComponent implements OnInit {
   CreateTenantDictAADUser(name:any,list:any){
     name=this.e
     list=this.selectedValueAADUser
+    if (list==null || name==null)
+    {
+      this.err=true
+    }
     //console.log(this.e)
     var dict = []; // create an empty array
-    for (let item of list) {
+    for (let item of list){
       dict.push({
         UID_Person:item.uiD_Person,
         accessRight: 'Admin'
-}) 
-  }
+      }) 
+    }
   //console.log(dict)
-    this.ADuserService.CreateListAADUser(name,dict).subscribe()
-    window.location.reload();
+    this.ADuserService.CreateListAADUser(name,dict).subscribe((res:any)=>{
+      if (res instanceof TypeError) {
+        this.err=true
+      }
+      else
+      this.alert=true
+    }
+    )
+    //window.location.reload();
    }
 
 
@@ -72,3 +83,5 @@ export class CreatePopupComponent implements OnInit {
   }
 
 }
+
+

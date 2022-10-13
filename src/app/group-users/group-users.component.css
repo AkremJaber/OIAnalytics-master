@@ -1,3 +1,12 @@
 .cancel{
     margin-left: 1250px;
 }
+.bi-trash3-fill{
+    color: rgba(255, 0, 0, 0.655);
+    font-size: 23px;
+    cursor: pointer;
+}
+.bi-pencil-square{
+    font-size: 23px;
+    cursor: pointer;
+}

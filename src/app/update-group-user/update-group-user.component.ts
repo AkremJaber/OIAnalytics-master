@@ -27,6 +27,9 @@ export class UpdateGroupUserComponent implements OnInit {
   ws:any=this.data.WSID;
   Access:any=this.data.AccessRight;
   Principal:any=this.data.Type;
+  isLinear = false;
+  alert:boolean=false
+  error:boolean=false
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,public service:TenantService) { }
   
@@ -45,7 +48,7 @@ export class UpdateGroupUserComponent implements OnInit {
     //console.log(this.selectedPrincipalType[0].name)
    }
 
-   UpdateSelectedGroupUser(workspaceId:any,email:any,AccessRights:any,PrincipalType:any){
+   UpdateSelectedGroupUser(workspaceId:any,email:any,AccessRights:any,PrincipalType:any):any{
     workspaceId=this.ws
     email=this.mail
     AccessRights=this.selectedAccessRight[0].name
@@ -54,13 +57,20 @@ export class UpdateGroupUserComponent implements OnInit {
     // console.log(email)
     // console.log(AccessRights)
     // console.log(PrincipalType)
-    this.service.UpdateGroupUser(workspaceId,email,AccessRights,PrincipalType).subscribe()
+    this.service.UpdateGroupUser(workspaceId,email,AccessRights,PrincipalType).subscribe((res:any)=>
+    {
+      if (res=null) {
+        this.error=true
+      }
+      else
+      this.alert=true
+    });
    }
 
   ngOnInit(): void {
-    console.log(this.ws)
+    //console.log(this.ws)
     //console.log(this.Access)
-    console.log(this.mail)
+    //console.log(this.mail)
     //console.log(this.Principal)
   }
 

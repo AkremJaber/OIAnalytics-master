@@ -40,7 +40,7 @@ export class AaduserService {
       return this.http.post(this.CreateTenantListAADUser,body,httpOptions)
   }
 
-  UpdateListAADUser(CCC_WorkspaceId:any,adUser:any,AccessRight:any){
+  UpdateListAADUser(CCC_WorkspaceId:any,adUser:any,AccessRight:any):any{
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }

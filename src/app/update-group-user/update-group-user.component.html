@@ -1,10 +1,94 @@
+<!-- <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+  <mat-step >
+    
+    <form class="example-form" #tenantForm="ngForm" >
+      <ng-template class="label" matStepLabel>User Email Address</ng-template>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email Address</mat-label>
+        <input matInput value={{mail}}>
+      </mat-form-field>
+    </form>
+  </mat-step>
+  <mat-step >
+    <form >
+      <mat-form-field appearance="fill">
+        <ng-template class="label" matStepLabel>Select user group access rights</ng-template>
+        <mat-label>Select Access Right</mat-label>  
+          <mat-select name="users" [(ngModel)]="mySelectAccessRight" (selectionChange)="selectChangeAccessRight()" > 
+            <mat-option [value]="varTest1.name" *ngFor="let varTest1 of AccessRights">{{varTest1.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <ng-container >
+          <div class="hide">
+              Selected :
+              <ul>
+                  <li *ngFor="let SelValUser of selectedAccessRight">{{SelValUser.name}}</li>
+              </ul>
+          </div>
+        </ng-container>
+
+        <mat-step >
+          <mat-form-field appearance="fill">
+            <ng-template class="label" matStepLabel>Select user principal type</ng-template>
+        <mat-label>Select Principal Type</mat-label>  
+          <mat-select name="users" [(ngModel)]="mySelectPrincipalType" (selectionChange)="selectChangePrincipalType()" > 
+            <mat-option [value]="varTest1.name" *ngFor="let varTest1 of PrincipalType">{{varTest1.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <ng-container >
+          <div class="hide">
+              Selected :
+              <ul>
+                  <li *ngFor="let SelValPrinc of selectedPrincipalType">{{SelValPrinc.name}}</li>
+              </ul>
+          </div>
+        </ng-container>
+      
+      <div>
+        <button type="submit" class="btn btn-primary" (click)="UpdateSelectedGroupUser(ws,mail,tenantForm.value.SelValU,tenantForm.value.SelValPrinc)">Update</button>
+        
+      </div>
+    </mat-step>
+    </form>
+  </mat-step>
+</mat-stepper>
+<button mat-button mat-dialog-close>Cancel</button> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- <form class="example-form"> -->
+  <h2 class="title">Update User Access Right</h2>
+  <br>
+
+  <div *ngIf="error" class="alert alert-success alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Error ! </strong> .
+  </div>
+  <div *ngIf="alert" class="alert alert-success alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Success ! </strong> User updated successfully.
+  </div>
+
     <form class="example-form" #tenantForm="ngForm" (ngSubmit)="UpdateSelectedGroupUser(ws,mail,tenantForm.value.SelValU,tenantForm.value.SelValPrinc)">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Email Address</mat-label>
-      <input matInput value={{mail}}>
+      <input disabled matInput value={{mail}}>
     </mat-form-field>
 <br>
+
 <mat-form-field appearance="fill">
     <mat-label>Select Access Right</mat-label>  
       <mat-select name="users" [(ngModel)]="mySelectAccessRight" (selectionChange)="selectChangeAccessRight()" > 
@@ -38,4 +122,5 @@
         </ng-container>
         <br>
         <button type="submit" class="btn btn-primary">Update</button>
+        <button mat-button mat-dialog-close>Cancel</button>
     </form>

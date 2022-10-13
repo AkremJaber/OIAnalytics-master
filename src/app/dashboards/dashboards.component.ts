@@ -1,5 +1,7 @@
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { isNull } from 'lodash';
 import { DashboardService } from '../Shared/Services/DashboardService/dashboard.service';
 import { TenantDetailsService } from '../Shared/Services/TenantDetails/tenant-details.service';
 import { TenantService } from '../Shared/Services/TenantService/tenant.service';
@@ -8,7 +10,13 @@ import { TenantService } from '../Shared/Services/TenantService/tenant.service';
 @Component({
   selector: 'app-dashboards',
   templateUrl: './dashboards.component.html',
-  styleUrls: ['./dashboards.component.css']
+  styleUrls: ['./dashboards.component.css'],
+  providers:[
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: {showError: true},
+    },
+  ],
 })
 export class DashboardsComponent implements OnInit {
 
@@ -52,18 +60,21 @@ export class DashboardsComponent implements OnInit {
    }
 
    createDash(name:any,ccC_WorkspaceId:string){
-    name=this.e
-    ccC_WorkspaceId=this.selectedValueTenant[0].ccC_WorkspaceId
-    
-    this.dashService.CreateDashboard(name,ccC_WorkspaceId).subscribe((res:any)=>{
-      if (res=null) {
+    if( this.e== null || this.selectedValueTenant[0].ccC_WorkspaceId==null)
+      {
+      this.error=true
+      //console.log(this.error)
+      }
+    name=this.e;
+    ccC_WorkspaceId=this.selectedValueTenant[0].ccC_WorkspaceId;
+
+  this.dashService.CreateDashboard(name,ccC_WorkspaceId).subscribe((res:any)=>{
+      if (res instanceof TypeError) {
         this.error=true
       }
       else
       this.alert=true
     });
-    
-
     //window.location.reload();
     //this.alert=true
     

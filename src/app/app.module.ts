@@ -49,6 +49,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatStepperModule} from '@angular/material/stepper';
 import { GroupUsersComponent } from './group-users/group-users.component';
 import { UpdateGroupUserComponent } from './update-group-user/update-group-user.component';
+import { AlertModalComponent } from './alert-modal/alert-modal.component';
+import { ErrorModalComponent } from './error-modal/error-modal.component';
 
 
 
@@ -71,7 +73,9 @@ import { UpdateGroupUserComponent } from './update-group-user/update-group-user.
     DashboardEmbedComponent,
     DashboardsComponent,
     GroupUsersComponent,
-    UpdateGroupUserComponent
+    UpdateGroupUserComponent,
+    AlertModalComponent,
+    ErrorModalComponent
 
     
 

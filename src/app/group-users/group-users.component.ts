@@ -14,6 +14,8 @@ export class GroupUsersComponent implements OnInit {
   constructor(public service:GroupUsersService,@Inject(MAT_DIALOG_DATA) public data: any,public tenantService:TenantService,private dialog:MatDialog) { }
   public GrpUsr:any;
   ws:any=this.data.WSID
+  alert:boolean=false
+  error:boolean=false
 
   get(){
     this.service.getGroupUsers(this.ws).subscribe((res:any)=>
@@ -30,10 +32,13 @@ export class GroupUsersComponent implements OnInit {
     //console.log(mail)
     if(confirm('Are you sure you want to delete this user ?'))
     {
-      this.tenantService.deleteGrpUsr(this.ws,email).subscribe((res:any)=>
-      {
-        console.log(res)
-      });
+      this.tenantService.deleteGrpUsr(this.ws,email).subscribe((res:any)=>{
+        if (res=null) {
+          this.error=true
+        }
+        else
+        this.alert=true
+      })
     }
    }
    

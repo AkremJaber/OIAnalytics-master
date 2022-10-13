@@ -41,6 +41,13 @@ export class TenantDetailsComponent implements OnInit {
   error:boolean=false
   Reportalert:boolean=false
   Reporterror:boolean=false
+  WSerror:boolean=false
+  WSalert:boolean=false
+  DSalert:boolean=false
+  DSerror:boolean=false
+
+
+
 
 
   get(){
@@ -132,8 +139,14 @@ export class TenantDetailsComponent implements OnInit {
   deleteTenant(id:any){
     if(confirm('Are you sure you want to delete this tenant ?'))
     {
-    this.service.deleteTenant(id).subscribe()
-    window.location.reload();
+    this.service.deleteTenant(id).subscribe((res:any)=>{
+      if (res=null) {
+        this.WSerror=true
+      }
+      else
+      this.WSalert=true
+    })
+    //window.location.reload();
     }
   }
 
@@ -152,8 +165,14 @@ export class TenantDetailsComponent implements OnInit {
    deleteDataset(ccC_WorkspaceId:string,datasetID:string){
     if(confirm('Are you sure you want to delete this dataset ?'))
     {
-      this.dsService.deleteDataset(ccC_WorkspaceId,datasetID).subscribe()
-      window.location.reload();
+      this.dsService.deleteDataset(ccC_WorkspaceId,datasetID).subscribe((res:any)=>{
+        if (res=null) {
+          this.DSerror=true
+        }
+        else
+        this.DSalert=true
+      })
+      //window.location.reload();
     }
    }
 

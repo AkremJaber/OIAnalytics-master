@@ -2,14 +2,17 @@
     <h1 class="display-4 text-center">Workspaces</h1>
 </div> -->
 <h2 id="WS">Workspaces</h2>
-<div *ngIf="error" class="alert alert-danger">
+<!-- <div *ngIf="error" class="alert alert-danger">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong>Error ! </strong> .
 </div>
 <div *ngIf="alert" class="alert alert-success alert-dismissible fade show">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong>Success ! </strong> Dashboard deleted successfully.
-</div>
+</div> -->
+<app-alert-modal [alert]="alert" *ngIf="alert"></app-alert-modal>
+
+<app-error-modal [error]="error" *ngIf="error"></app-error-modal>
 <br>
 <div class="u-tabs u-tabs-1">
    
@@ -35,23 +38,23 @@
             </div>
         </div>
       </div>
-      
-      
+
       <div class="u-container-style u-tab-pane u-white u-tab-pane-3" id="tab-2917" role="tabpanel" aria-labelledby="link-tab-2917">
         <div class="u-container-layout u-container-layout-10">
           <div class="form-area">
 
-           
+            
             
             <h2 class="title">Assign workspace to users:</h2>
             
-            <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-              <mat-step >
-                <form class="example-form" #tenantForm="ngForm">
+            <mat-stepper class="step" orientation="vertical" [linear]="isLinear" #stepper>
+              <mat-step [stepControl]="firstFormGroup" errorMessage="Workspace is required.">
+                <form class="example-form" #tenantForm="ngForm" [formGroup]="firstFormGroup">
                   <ng-template matStepLabel>Please select a workspace</ng-template>
+                  <br>
                   <mat-form-field appearance="fill">
                     
-                    <mat-select name="my-selectt" [(ngModel)]="mySelectTenant" (selectionChange)="selectChangeTenant()">
+                    <mat-select name="my-selectt" [(ngModel)]="mySelectTenant" (selectionChange)="selectChangeTenant()" formControlName="firstCtrl" required>
                       <mat-option [value]="itemt.ccC_WorkspaceId" *ngFor="let itemt of t">
                           {{itemt.ccC_Name}}
                       </mat-option>
@@ -76,12 +79,13 @@
                 </form>
 
               </mat-step>
-              <mat-step >
-                <form >
+              <mat-step [stepControl]="secondFormGroup" errorMessage="Users are required" >
+                <form [formGroup]="secondFormGroup">
                   <ng-template class="label" matStepLabel>Select which users will be assigned to the selected workspace</ng-template>
+                  <br>
                   <mat-form-field appearance="fill">
                     <mat-label>Select an option</mat-label>
-                    <mat-select name="my-selectt" [(ngModel)]="mySelectAADUser" (selectionChange)="selectChangeAADUser()" multiple="multiple" >
+                    <mat-select name="my-selectt" [(ngModel)]="mySelectAADUser" (selectionChange)="selectChangeAADUser()" multiple="multiple" formControlName="secondCtrl" required>
                    
                         <mat-option [value]="itemu.uiD_Person" *ngFor="let itemu of u">
                             {{itemu.displayName}}
@@ -101,14 +105,18 @@
                           Selected:{{selectedValueAADUser}} 
                       </div>
                     </ng-template>
+                  </form>
                     <div>
                       <button style="color: #05aadb" mat-button matStepperNext>Next</button>
                     </div>
-                    <mat-step >
+                    <mat-step [stepControl]="thirdFormGroup" errorMessage="Permission is required.">
+                      <form [formGroup]="thirdFormGroup">
                       <ng-template matStepLabel>Select which permission </ng-template>
+                      <br>
                   <mat-form-field appearance="fill">
+                    
                     <mat-label>Select an option</mat-label>  
-                      <mat-select name="users" [(ngModel)]="mySelectAccessRight" (selectionChange)="selectChangeAccessRight()" > 
+                      <mat-select name="users" [(ngModel)]="mySelectAccessRight" (selectionChange)="selectChangeAccessRight()" formControlName="thirdCtrl" required > 
                         <mat-option [value]="varTest1.name" *ngFor="let varTest1 of AccessRights">{{varTest1.name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -125,8 +133,9 @@
                     <button mat-button matStepperPrevious>Previous</button>
                     <button style="color: #05aadb"  mat-button (click)="AddAdmin(tenantForm.value.SelValT,tenantForm.value.SelValU,tenantForm.value.SelValUser)">Confirm</button>
                   </div>
-                </mat-step>
                 </form>
+                </mat-step>
+                
               </mat-step>
             </mat-stepper>
         </div>
